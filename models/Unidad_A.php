@@ -57,6 +57,7 @@
             $conectar= parent::conexion();
             parent::set_names();
             $sql="SELECT
+            unidad_educativa_a.id_unidad_a,
             unidad_educativa_a.a_nombre,
             unidad_educativa_a.a_director_nombre,
             unidad_educativa_a.a_director_tel,
@@ -76,9 +77,14 @@
         public function listar_unidad_a_id($id_unidad_a){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT *
-                FROM 
-                unidad_educativa_a
+            $sql="SELECT unidad_educativa_a.id_unidad_a,
+                unidad_educativa_a.a_nombre,
+                unidad_educativa_a.a_director_nombre,
+                unidad_educativa_a.a_director_tel,
+                unidad_educativa_a.a_pcpa,
+                unidad_educativa_a.a_tecnico,
+                unidad_educativa_a.a_avance  
+                FROM unidad_educativa_a 
                 WHERE id_unidad_a = ?";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_unidad_a);

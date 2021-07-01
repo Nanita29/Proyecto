@@ -65,7 +65,7 @@ $(document).ready(function(){
 });
 
 function ver(id_unidad_a){
-    window.open('http://localhost:80/unidad_a/view/DetalleTicket/?ID='+ id_unidad_a +'');
+    window.open('http://localhost:80/Proyecto/view/Cambio_Unidad_A/?ID='+ id_unidad_a +'');
 }
 
 init();

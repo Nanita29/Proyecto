@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
     <?php require_once("../MainHead/head.php");?>
-	<title>Educo : Contultar Unidad Educativa "A"</title>
+	<title>Educo : Consultar Unidad Educativa "A"</title>
 </head>
 <body class="with-side-menu">
 
@@ -42,6 +42,7 @@
 				<table id="unidad_a_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
 					<thead>
 						<tr>
+							<th style="width: 35%;">ID Unidad</th>
 							<th style="width: 35%;">Nombre</th>
 							<th style="width: 40%;">Director</th>
                             <th style="width: 40%;">Director Telf.</th>
