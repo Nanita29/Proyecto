@@ -291,7 +291,7 @@
 										<label class="form-label semibold" for="e3">ESTADO 3</label>
 										<input type="file" class="form-control" id="e3" name="e3" placeholder="Ingrese el código">
 										<input style="display: none" type="text" class="form-control" id="file3" name="file3" placeholder="Ingrese el código">
-										<button type="button" onclick="fileTres()">Cargar Archivo</button>
+										<button type="button" onclick="fileTres()">Cargar Archivos</button>
 									</fieldset>
 								</div> 
 
