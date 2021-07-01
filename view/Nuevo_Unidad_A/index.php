@@ -286,6 +286,7 @@
 									</fieldset>
 								</div> 
 
+
 								<div class="col-lg-6">
 									<fieldset class="form-group">
 										<label class="form-label semibold" for="e3">ESTADO 3</label>
