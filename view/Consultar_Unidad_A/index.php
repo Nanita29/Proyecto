@@ -42,15 +42,19 @@
 				<table id="unidad_a_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
 					<thead>
 						<tr>
-							<th style="width: 35%;">ID Unidad</th>
-							<th style="width: 35%;">Nombre</th>
-							<th style="width: 40%;">Director</th>
-                            <th style="width: 40%;">Director Telf.</th>
-                            <th style="width: 40%;">PCPA</th>
-                            <th style="width: 40%;">Técnico</th>
-                            <th style="width: 40%;">Avance (%)</th>
-                            <th style="width: 40%;">Creador</th>
-							<th class="text-center" style="width: 10%;"></th>
+<!-- 							//<th style="width: 35%;">ID Unidad</th>
+-->							<th>Nombre</th>
+							<th>Director</th>
+                            <th>Director Telf.</th>
+                            <th>PCPA</th>
+                            <th>Técnico</th>
+                            <th>Avance (%)</th>
+                            <th>E1</th>
+							<th>E2</th>
+							<th>E3</th>
+							<th>E4</th>
+							<th>Creador</th>
+							<th class="text-center"></th>
 						</tr>
 					</thead>
 					<tbody>

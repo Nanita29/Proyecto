@@ -62,11 +62,11 @@
 						/>
 -->
 
-						<!-- <a  download="FILENAME.txt"             
+						<a  download="FILENAME"             
        					href= 'data:text/plain;base64,VEUgUVVJRVJPIERFTUFTSUFETyDimaU='
 						   >
 						   descargar
-						   </a> -->
+						   </a>
 
 						   <!-- INF GENERAL -->
 						<div class="container">

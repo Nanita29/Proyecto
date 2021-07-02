@@ -47,21 +47,72 @@
             foreach($datos as $row){
                 $sub_array = array();
                 /* CAMPOS EN LA TABLA: */
-                $sub_array[] = $row["id_unidad_a"];
+                //$sub_array[] = $row["id_unidad_a"];
                 $sub_array[] = $row["a_nombre"];
                 $sub_array[] = $row["a_director_nombre"];
                 $sub_array[] = $row["a_director_tel"];
                 $sub_array[] = $row["a_pcpa"];
                 $sub_array[] = $row["a_tecnico"];
                 $sub_array[] = $row["a_avance"];
+                //ESTADO 1:
+                    if ($row["e1"]==TRUE || $row["e1"]>0){
+                        $sub_array[] = '<a download="E1_'.$row["a_nombre"].'" href="'.$row["e1"].'">
+                                            <button type="button" onClick=""  id="'.$row["e1"].'" class="btn btn-inline btn-primary btn-sm ladda-button">
+                                                <i class="fa fa-download"></i>
+                                            </button>
+                                        </a>';
+                    }else{
+                        $sub_array[] = '';
+                    }
+                
+                //ESTADO 2:
+                if ($row["e2"]==TRUE || $row["e2"]>0){
+                    $sub_array[] = '<a download="E2_'.$row["a_nombre"].'" href="'.$row["e2"].'">
+                                        <button type="button" onClick=""  id="'.$row["e2"].'" class="btn btn-inline btn-primary btn-sm ladda-button">
+                                            <i class="fa fa-download"></i>
+                                        </button>
+                                    </a>';
+                }else{
+                    $sub_array[] = '';
+                }
+
+                //ESTADO 3:
+                if ($row["e3"]==TRUE || $row["e3"]>0){
+                    $sub_array[] = '<a download="E3_'.$row["a_nombre"].'" href="'.$row["e3"].'">
+                                        <button type="button" onClick=""  id="'.$row["e3"].'" class="btn btn-inline btn-primary btn-sm ladda-button">
+                                            <i class="fa fa-download"></i>
+                                        </button>
+                                    </a>';
+                }else{
+                    $sub_array[] = '';
+                }
+
+                //ESTADO 4:
+                if ($row["e4"]==TRUE || $row["e4"]>0){
+                    $sub_array[] = '<a download="E4_'.$row["a_nombre"].'" href="'.$row["e4"].'">
+                                        <button type="button" onClick=""  id="'.$row["e4"].'" class="btn btn-inline btn-primary btn-sm ladda-button">
+                                            <i class="fa fa-download"></i>
+                                        </button>
+                                    </a>';
+                }else{
+                    $sub_array[] = '';
+                }
+                    
+                
+               /*  $sub_array[] = $row["e2"];
+                $sub_array[] = $row["e3"];
+                $sub_array[] = $row["e4"]; */
                 $sub_array[] = $row["nombre_usu"]." ".$row["apellido_usu"];
 
-                $sub_array[] = '<button type="button" onClick="ver('.$row["id_unidad_a"].');"  id="'.$row["id_unidad_a"].'" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-eye"></i></button>';
+                $sub_array[] = '<a href="..\Cambio_Unidad_A\?ID='.$row["id_unidad_a"].'\">
+                <button type="button" onClick=""  id="'.$row["id_unidad_a"].'" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-eye"></i></button>
+            </a>
+';
                 $data[] = $sub_array;
             }
 
             $results = array(
-                "sEcho"=>1,
+                "sEcho"=>1, 
                 "iTotalRecords"=>count($data),
                 "iTotalDisplayRecords"=>count($data),
                 "aaData"=>$data);

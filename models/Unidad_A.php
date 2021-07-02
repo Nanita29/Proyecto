@@ -63,6 +63,10 @@
             unidad_educativa_a.a_director_tel,
             unidad_educativa_a.a_pcpa,
             unidad_educativa_a.a_tecnico,
+            unidad_educativa_a.e1,
+            unidad_educativa_a.e2,
+            unidad_educativa_a.e3,
+            unidad_educativa_a.e4,
             unidad_educativa_a.a_avance,
             usuario.nombre_usu,
             usuario.apellido_usu
