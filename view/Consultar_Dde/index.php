@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
     <?php require_once("../MainHead/head.php");?>
-	<title>Educo : Consultar Unidad Educativa "(R2.IVO6)"</title>
+	<title>Educo : Consultar Dirección Distrital " (R2.IVO7, R4.IVO3)"</title>
 </head>
 <body class="with-side-menu">
 
@@ -23,10 +23,10 @@
 				<div class="tbl">
 					<div class="tbl-row">
 						<div class="tbl-cell">
-							<h3>Consultar Unidad Educativa "(R2.IVO6)"</h3>
+							<h3>Consultar Dirección Distrital " (R2.IVO7, R4.IVO3)"</h3>
 							<ol class="breadcrumb breadcrumb-simple">
 							<li><a href="../Home/index.php">Inicio</a></li>
-								<li class="active">Consultar Unidades Educativas "(R2.IVO6)"</li>
+								<li class="active">Consultar Dirección Distrital " (R2.IVO7, R4.IVO3)"</li>
 							</ol>
 						</div>
 					</div>
@@ -35,7 +35,7 @@
 
 			<div class="box-typical box-typical-padding">
 
-						<a href="..\Nuevo_Unidad_A\">
+						<a href="..\Nuevo_Dde\">
 							<button type="button" class="btn btn-primary">Nuevo Registro</button> <br><br>
                         </a>
 
@@ -46,8 +46,7 @@
 							<th class="text-center">Nombre</th>
 							<th class="text-center">Director</th>
                             <th class="text-center">Director Telf.</th>
-                            <th class="text-center">PCPA</th>
-                            <th class="text-center">Técnico</th>
+                            <th class="text-center">Datos</th>
                             <th class="text-center">Avance (%)</th> 
 							<th class="text-center">Creador</th>
 							<th class="text-center"></th>
@@ -67,7 +66,7 @@
 
 	<?php require_once("../MainJs/js.php");?>
 
-	<script type="text/javascript" src="consultar_unidad_a.js"></script>
+	<script type="text/javascript" src="consultar_dde.js"></script>
 
 </body>
 </html>

@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
     <?php require_once("../MainHead/head.php");?>
-	<title>Educo : Nueva Unidad Educativa "(R2.IVO6)"</title>
+	<title>Educo : Nueva Unidad Educativa " (R2.IVO7, R4.IVO3)"</title>
 </head>
 <body class="with-side-menu">
 
@@ -31,7 +31,7 @@
 							<h3>Nueva Unidad Educativa</h3>
 							<ol class="breadcrumb breadcrumb-simple">
 								<li><a href="../Home/index.php">Inicio</a></li>
-								<li class="active">Nueva Unidad Educativa "(R2.IVO6)"</li>
+								<li class="active">Nueva Unidad Educativa " (R2.IVO7, R4.IVO3)"</li>
 							</ol>
 						</div>
 					</div>
@@ -40,7 +40,7 @@
 
 			<div class="box-typical box-typical-padding">
 				<p>
-					Desde esta ventana podrá registrar una nueva Unidad Educativa "(R2.IVO6)"
+					Desde esta ventana podrá registrar una nueva Unidad Educativa " (R2.IVO7, R4.IVO3)"
 				</p>
 
 
@@ -48,25 +48,6 @@
 					<form method="post" id="unidad_form"> 
 
 						<input type="hidden" id="id_usuario" name="id_usuario" value="<?php echo $_SESSION["id_usuario"] ?>">
-
-						<!-- <div class="col-lg-6">
-							<fieldset class="form-group">
-								<label class="form-label semibold" for="a_file">Código</label>
-								<input type="file" class="form-control" id="a_file" name="a_file" placeholder="Ingrese el código">
-							</fieldset>
-						</div> -->
-<!--
-						<img style='display:block; width:100px;height:100px;' id='base64image'                 
-       					src= 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcGBwcICQsJCAgKCAcHCg0KCgsMDAwMBwkODw0MDgsMDAz/2wBDAQICAgMDAwYDAwYMCAcIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAFLAg0DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD5rooor8DP9oAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiv04/4h2dK/wCi96f/AOEyn/ydR/xDs6V/0XvT/wDwmU/+Tq+g/wBV8z/59f8Ak0f8z8X/AOJhvD//AKGH/lKv/wDKz8x6K/Tj/iHZ0r/oven/APhMp/8AJ1H/ABDs6V/0XvT/APwmU/8Ak6j/AFXzP/n1/wCTR/zD/iYbw/8A+hh/5Sr/APys/Meiv04/4h2dK/6L3p//AITKf/J1H/EOzpX/AEXvT/8AwmU/+TqP9V8z/wCfX/k0f8w/4mG8P/8AoYf+Uq//AMrPzHor9OP+IdnSv+i96f8A+Eyn/wAnUf8AEOzpX/Re9P8A/CZT/wCTqP8AVfM/+fX/AJNH/MP+JhvD/wD6GH/lKv8A/Kz8x6K+8vEHw3tfgb8TdR1TTf7Sj8Qa5YagbyC90uHw9FZz+HtL/tDVNH1DSbACxvtK1WE2MimCfGyVCzzFZPP+Da8vFYN0NJPW7+VrfjZp+W297foPDfE1POIyqUY2hyxad7qXNzJtXSfKpRlFNpOXK5JKLi5FFFFcZ9OFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf/9k='
-
-						/>
--->
-
-						<!-- <a  download="FILENAME"             
-       					href= 'data:text/plain;base64,VEUgUVVJRVJPIERFTUFTSUFETyDimaU='
-						   >
-						   descargar
-						   </a> -->
 
 						   <!-- INF GENERAL -->
 						<div class="container">
@@ -120,8 +101,8 @@
 
 								<div class="col-lg-6">
 									<fieldset class="form-group">
-										<label class="form-label semibold" for="a_pcpa">PCPA</label>
-										<input type="text" class="form-control" id="a_pcpa" name="a_pcpa" placeholder="Ingrese el PCPA">
+										<label class="form-label semibold" for="a_dna">DNA</label>
+										<input type="text" class="form-control" id="a_dna" name="a_dna" placeholder="Ingrese el DNA">
 									</fieldset>
 								</div>
 
@@ -129,6 +110,13 @@
 									<fieldset class="form-group">
 										<label class="form-label semibold" for="a_tecnico">Técnico</label>
 										<input type="text" class="form-control" id="a_tecnico" name="a_tecnico" placeholder="Ingrese el técnico"><br>
+									</fieldset>
+								</div>
+
+								<div class="col-lg-6">
+									<fieldset class="form-group">
+										<label class="form-label semibold" for="a_centro_salud">Centro de Salud</label>
+										<input type="text" class="form-control" id="a_centro_salud" name="a_centro_salud" placeholder="Ingrese el centro de salud"><br>
 									</fieldset>
 								</div>
 								
@@ -268,7 +256,7 @@
 
 								<div class="col-lg">
 									<fieldset class="form-group">
-										<label class="form-label semibold">1. Conocen la normativa RM 2021/04 Planes de Convivencia Pacífica y Armónica</label>
+										<label class="form-label semibold">1. Socialización del protocolo (UE priorizadas) y DNA.</label>
 										<input type="radio" id="e1t" name="e1" value="0" /> Aprobado
 										<input type="radio" id="e1f" name="e1" value="1" /> Reprobado
 									</fieldset>
@@ -277,7 +265,7 @@
 
 								<div class="col-lg">
 									<fieldset class="form-group">
-										<label class="form-label semibold">2. Desarrollaron talleres para el diseño de PCPA, con representantes por unidad educativa.</label>
+										<label class="form-label semibold">2. Elaboración - aprobación del mecanismo de referencia y contra referencia de casos (DDE, IPELC, UE priorizadas y DNA).</label>
 										<input type="radio" id="e2t" name="e2" value="0" /> Aprobado
 										<input type="radio" id="e2f" name="e2" value="1" /> Reprobado
 
@@ -286,7 +274,7 @@
 
 								<div class="col-lg">
 									<fieldset class="form-group">
-										<label class="form-label semibold">3. Firma y entrega de PCPA.</label>
+										<label class="form-label semibold">3. Gestión para recojo de información referida al reporte de casos y funcionamiento del mecanismo (directores UE, Comisiones de Convivencia en coordinación con DNA).</label>
 										<input type="radio" id="e3t" name="e3" value="0" /> Aprobado
 										<input type="radio" id="e3f" name="e3" value="1" /> Reprobado
 
@@ -296,7 +284,7 @@
 
 								<div class="col-lg">
 									<fieldset class="form-group">
-										<label class="form-label semibold">4. Informe de implementacion por UE del PCPA.</label>
+										<label class="form-label semibold">4. Socialización de la experiencia.</label>
 										<input type="radio" id="e4t" name="e4" value="0" /> Aprobado
 										<input type="radio" id="e4f" name="e4" value="1" /> Reprobado
 									</fieldset>
@@ -318,7 +306,7 @@
 
 	<?php require_once("../MainJs/js.php");?>
 	
-	<script type="text/javascript" src="nuevo_unidad_a.js"></script>
+	<script type="text/javascript" src="nuevo_unidad_b.js"></script>
 
 </body>
 </html>

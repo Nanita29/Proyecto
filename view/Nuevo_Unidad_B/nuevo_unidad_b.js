@@ -75,7 +75,7 @@ function guardaryeditar(e){
 if(false){
     }else{
         $.ajax({
-            url: "../../controller/unidad_a.php?op=insert",
+            url: "../../controller/unidad_b.php?op=insert",
             type: "POST",
             data: formData,
             contentType: false,
@@ -93,8 +93,9 @@ if(false){
                 $('#id_usuario').val('');
                 $('#a_director_nombre').val('');
                 $('#a_director_tel').val('');
-                $('#a_pcpa').val('');
+                $('#a_dna').val('');
                 $('#a_tecnico').val('');
+                $('#a_centro_salud').val('');
                 $('#a_docen_ini_v').val('');
                 $('#a_docen_ini_m').val('');
                 $('#a_docen_pri_v').val('');

@@ -1,8 +1,8 @@
 <?php
-    class Unidad_A extends Conectar{
+    class Unidad_B extends Conectar{
 
         public function insert_unidad_a($id_comunidad,$id_estado,$id_fuente,$id_usuario,$a_cod,$a_nombre,$a_director_nombre,
-        $a_director_tel,$a_pcpa,$a_tecnico,$a_docen_ini_v,$a_docen_ini_m,$a_docen_pri_v,$a_docen_pri_m,
+        $a_director_tel,$a_dna,$a_tecnico,$a_centro_salud,$a_docen_ini_v,$a_docen_ini_m,$a_docen_pri_v,$a_docen_pri_m,
         $a_docen_sec_v,$a_docen_sec_m,$a_est_ini_v,$a_est_ini_m,$a_est_pri_v,$a_est_pri_m,$a_est_sec_v,$a_est_sec_m,$a_per_med_v,
         $a_per_med_m,$a_per_enf_v,$a_per_enf_m,$e1,$e2,$e3,$e4){
 
@@ -11,12 +11,12 @@
             parent::set_names();
 
             $sql="INSERT INTO proyecto_educo.unidad_educativa_a (id_comunidad, id_estado, id_fuente, id_usuario, 
-            a_cod, a_nombre, a_director_nombre, a_director_tel, a_pcpa, a_tecnico, a_docen_ini_v, a_docen_ini_m, a_docen_pri_v,/*  13 */
-            a_docen_pri_m, a_docen_sec_v, a_docen_sec_m, a_est_ini_v, a_est_ini_m, a_est_pri_v, a_est_pri_m, a_est_sec_v, a_est_sec_m, /* 22 */
+            a_cod, a_nombre, a_director_nombre, a_director_tel, a_dna, a_tecnico, a_centro_salud, a_docen_ini_v, a_docen_ini_m, a_docen_pri_v,
+            a_docen_pri_m, a_docen_sec_v, a_docen_sec_m, a_est_ini_v, a_est_ini_m, a_est_pri_v, a_est_pri_m, a_est_sec_v, a_est_sec_m, 
             a_per_med_v, a_per_med_m, a_per_enf_v, a_per_enf_m, a_fecha_crea, a_fecha_mod, a_fecha_elim, e1, e2, e3, e4, a_estado) VALUES 
-            ('".$id_comunidad."','2','".$id_fuente."','".$id_usuario."',
+            ('".$id_comunidad."','3','".$id_fuente."','".$id_usuario."',
             '".$a_cod."','".$a_nombre."','".$a_director_nombre."','".$a_director_tel."',
-            '".$a_pcpa."','".$a_tecnico."','".$a_docen_ini_v."','".$a_docen_ini_m."',
+            '".$a_dna."','".$a_tecnico."','".$a_centro_salud."','".$a_docen_ini_v."','".$a_docen_ini_m."',
             '".$a_docen_pri_v."','".$a_docen_pri_m."','".$a_docen_sec_v."','".$a_docen_sec_m."',
             '".$a_est_ini_v."','".$a_est_ini_m."','".$a_est_pri_v."','".$a_est_pri_m."',
             '".$a_est_sec_v."','".$a_est_sec_m."','".$a_per_med_v."','".$a_per_med_m."',
@@ -29,16 +29,16 @@
             return $resultado=$sql->fetchAll();
         } 
 
-        public function update_unidad_a($id_unidad_a,$id_comunidad,$id_fuente, $a_cod ,$a_nombre,$a_director_nombre,
-        $a_director_tel,$a_pcpa,$a_tecnico,$a_docen_ini_v,$a_docen_ini_m,$a_docen_pri_v,$a_docen_pri_m,
+        public function update_unidad_a($id_unidad_a,$id_comunidad,$id_estado,$id_fuente, $id_usuario,$a_cod ,$a_nombre,$a_director_nombre,
+        $a_director_tel,$a_dna,$a_tecnico,$a_centro_salud,$a_docen_ini_v,$a_docen_ini_m,$a_docen_pri_v,$a_docen_pri_m,
         $a_docen_sec_v,$a_docen_sec_m,$a_est_ini_v,$a_est_ini_m,$a_est_pri_v,$a_est_pri_m,$a_est_sec_v,$a_est_sec_m,$a_per_med_v,
         $a_per_med_m,$a_per_enf_v,$a_per_enf_m,$e1,$e2,$e3,$e4){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="UPDATE proyecto_educo.unidad_educativa_a  SET 
              id_comunidad=".$id_comunidad.", id_fuente=".$id_fuente.", a_cod='".$a_cod."',a_nombre='".$a_nombre."', 
-             a_director_nombre='".$a_director_nombre."',a_director_tel='".$a_director_tel."', a_pcpa='".$a_pcpa."', a_tecnico='".$a_tecnico."', 
-             a_docen_ini_v=".$a_docen_ini_v.", a_docen_ini_m=".$a_docen_ini_m.", a_docen_pri_v=".$a_docen_pri_v.",
+             a_director_nombre='".$a_director_nombre."',a_director_tel='".$a_director_tel."', a_dna='".$a_dna."', a_tecnico='".$a_tecnico."', 
+             a_centro_salud='".$a_centro_salud."', a_docen_ini_v=".$a_docen_ini_v.", a_docen_ini_m=".$a_docen_ini_m.", a_docen_pri_v=".$a_docen_pri_v.",
              a_docen_pri_m=".$a_docen_pri_m.", a_docen_sec_v=".$a_docen_sec_v.", a_docen_sec_m=".$a_docen_sec_m.",
              a_est_ini_v=".$a_est_ini_v.", a_est_ini_m=".$a_est_ini_m.", a_est_pri_v=".$a_est_pri_v.", a_est_pri_m=".$a_est_pri_m.", 
              a_est_sec_v=".$a_est_sec_v.", a_est_sec_m=".$a_est_sec_m.", a_per_med_v=".$a_per_med_v.", a_per_med_m=".$a_per_med_m.", 
@@ -62,8 +62,9 @@
             unidad_educativa_a.a_nombre,
             unidad_educativa_a.a_director_nombre,
             unidad_educativa_a.a_director_tel,
-            unidad_educativa_a.a_pcpa,
+            unidad_educativa_a.a_dna,
             unidad_educativa_a.a_tecnico,
+            unidad_educativa_a.a_centro_salud,
             unidad_educativa_a.e1,
             unidad_educativa_a.e2,
             unidad_educativa_a.e3,
@@ -73,7 +74,7 @@
             usuario.apellido_usu
             FROM 
             unidad_educativa_a, usuario
-            WHERE unidad_educativa_a.id_estado = 2 
+            WHERE unidad_educativa_a.id_estado = 3 
             AND unidad_educativa_a.id_usuario = usuario.id_usuario";
             $sql=$conectar->prepare($sql);
             $sql->execute();

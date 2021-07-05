@@ -1,7 +1,7 @@
 <?php
     require_once("../config/conexion.php");
-    require_once("../models/Unidad_A.php");
-    $unidad_a = new Unidad_A();
+    require_once("../models/Unidad_B.php");
+    $unidad_a = new Unidad_B();
 
     switch($_GET["op"]){
         case "insert":
@@ -15,8 +15,9 @@
                 $_POST["a_nombre"],
                 $_POST["a_director_nombre"],
                 $_POST["a_director_tel"],
-                $_POST["a_pcpa"],
+                $_POST["a_dna"],
                 $_POST["a_tecnico"],
+                $_POST["a_centro_salud"],
                 $_POST["a_docen_ini_v"],
                 $_POST["a_docen_ini_m"],
                 $_POST["a_docen_pri_v"],
@@ -36,21 +37,28 @@
                 $_POST["e1"],
                 $_POST["e2"],
                 $_POST["e3"],
-                $_POST["e4"]
-            );
+                $_POST["e4"],
+                $_POST["a_avance"]);
+
+
         break;
 
         case "update":
+            print_r( 
             $unidad_a->update_unidad_a(
+                
                 $_POST["id_unidad_a"],
                  $_POST["id_comunidad"],
+                 $_POST["id_estado"],
                  $_POST["id_fuente"],
+                 $_POST["id_usuario"],
                  $_POST["a_cod"],
                  $_POST["a_nombre"],
                  $_POST["a_director_nombre"],
                  $_POST["a_director_tel"],
-                 $_POST["a_pcpa"],
+                 $_POST["a_dna"],
                  $_POST["a_tecnico"],
+                 $_POST["a_centro_salud"],
                  $_POST["a_docen_ini_v"],
                  $_POST["a_docen_ini_m"],
                  $_POST["a_docen_pri_v"],
@@ -70,12 +78,13 @@
                  $_POST["e1"],
                  $_POST["e2"],
                  $_POST["e3"],
-                 $_POST["e4"]
-                 );
+                 $_POST["e4"]));
+ 
+ 
          break;
 
         
-        case "listar":
+         case "listar":
             $datos=$unidad_a->listar_unidad_a();
             $data= Array();
             foreach($datos as $row){
@@ -85,12 +94,13 @@
                 $sub_array[] = $row["a_nombre"];
                 $sub_array[] = $row["a_director_nombre"];
                 $sub_array[] = $row["a_director_tel"];
-                $sub_array[] = $row["a_pcpa"];
+                $sub_array[] = $row["a_dna"];
                 $sub_array[] = $row["a_tecnico"];
+                $sub_array[] = $row["a_centro_salud"];
                 $sub_array[] = $row["a_avance"];
                 $sub_array[] = $row["nombre_usu"]." ".$row["apellido_usu"];
 
-                $sub_array[] = '<a href="..\Cambio_Unidad_A\?DATA='.$row["id_unidad_a"].','.$row["id_comunidad"].','.$row["id_fuente"].'">
+                $sub_array[] = '<a href="..\Cambio_Unidad_B\?DATA='.$row["id_unidad_a"].','.$row["id_comunidad"].','.$row["id_fuente"].'">
                 <button type="button" onClick=""  id="'.$row["id_unidad_a"].'" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-edit"></i></button></a>';
 
                 $sub_array[] = '<a href="..\Consultar_Archivos\?DATA='.$row["id_unidad_a"].','.$row["id_estado"].'"> 
@@ -115,7 +125,7 @@
                         ?>
                         <div >
                             <p>
-                                Desde esta ventana podrá modificar una nueva Unidad Educativa "(R2.IVO6)"
+                                Desde esta ventana podrá modificar una nueva Unidad Educativa " (R2.IVO7, R4.IVO3)"
                             </p>
                             <div class="row">
                             
@@ -126,18 +136,18 @@
                                     <!-- INF GENERAL -->
                                     <div class="container">
                                         <div><h5 class="m-t-lg with-border">INFORMACIÓN GENERAL</h5></div>
-                                            
-                                            <div class="col-lg-6">
-                                                <fieldset class="form-group">
-                                                    <label class="form-label semibold" for="a_cod">Código</label>
-                                                    <input type="text" class="form-control" id="a_cod" name="a_cod" placeholder="Ingrese el código" value=<?php echo $row['a_cod'] ?>>
-                                                </fieldset>
-                                            </div>
 
-                                            <div class="col-lg-6" style="display: none">
+                                        <div class="col-lg-6" style="display: none">
                                                 <fieldset class="form-group">
                                                     <label class="form-label semibold" for="id_unidad_a">Código</label>
                                                     <input type="text" class="form-control" id="id_unidad_a" name="id_unidad_a" placeholder="Ingrese el código" value=<?php echo $row['id_unidad_a'] ?>>
+                                                </fieldset>
+                                            </div>
+                                            
+                                        <div class="col-lg-6">
+                                                <fieldset class="form-group">
+                                                    <label class="form-label semibold" for="a_cod">Código</label>
+                                                    <input type="text" class="form-control" id="a_cod" name="a_cod" placeholder="Ingrese el código" value=<?php echo $row['a_cod'] ?>>
                                                 </fieldset>
                                             </div>
 
@@ -185,8 +195,8 @@
 
                                             <div class="col-lg-6">
                                                 <fieldset class="form-group">
-                                                    <label class="form-label semibold" for="a_pcpa">PCPA</label>
-                                                    <input type="text" class="form-control" id="a_pcpa" name="a_pcpa" placeholder="Ingrese el PCPA" value=<?php echo $row['a_pcpa'] ?>>
+                                                    <label class="form-label semibold" for="a_dna">DNA</label>
+                                                    <input type="text" class="form-control" id="a_dna" name="a_dna" placeholder="Ingrese el DNA" value=<?php echo $row['a_dna'] ?>>
                                                 </fieldset>
                                             </div>
 
@@ -194,6 +204,13 @@
                                                 <fieldset class="form-group">
                                                     <label class="form-label semibold" for="a_tecnico">Técnico</label>
                                                     <input type="text" class="form-control" id="a_tecnico" name="a_tecnico" placeholder="Ingrese el técnico" value=<?php echo $row['a_tecnico'] ?>><br>
+                                                </fieldset>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <fieldset class="form-group">
+                                                    <label class="form-label semibold" for="a_centro_salud">Centro de Salud</label>
+                                                    <input type="text" class="form-control" id="a_centro_salud" name="a_centro_salud" placeholder="Ingrese el centro de salud" value=<?php echo $row['a_centro_salud'] ?>><br>
                                                 </fieldset>
                                             </div>
                                             
@@ -331,7 +348,7 @@
 
                                             <div class="col-lg">
                                                 <fieldset class="form-group">
-                                                    <label class="form-label semibold">1. Conocen la normativa RM 2021/04 Planes de Convivencia Pacífica y Armónica</label>
+                                                    <label class="form-label semibold">1. Socialización del protocolo (UE priorizadas) y DNA.</label>
                                                     <input type="radio" id="e1t" name="e1" value="0" /> Aprobado
                                                     <input type="radio" id="e1f" name="e1" value="1" /> Reprobado
                                                 </fieldset>
@@ -340,7 +357,7 @@
 
                                             <div class="col-lg">
                                                 <fieldset class="form-group">
-                                                    <label class="form-label semibold">2. Desarrollaron talleres para el diseño de PCPA, con representantes por unidad educativa.</label>
+                                                    <label class="form-label semibold">2. Elaboración - aprobación del mecanismo de referencia y contra referencia de casos (DDE, IPELC, UE priorizadas y DNA).</label>
                                                     <input type="radio" id="e2t" name="e2" value="0" /> Aprobado
                                                     <input type="radio" id="e2f" name="e2" value="1" /> Reprobado
 
@@ -349,7 +366,7 @@
 
                                             <div class="col-lg">
                                                 <fieldset class="form-group">
-                                                    <label class="form-label semibold">3. Firma y entrega de PCPA.</label>
+                                                    <label class="form-label semibold">3. Gestión para recojo de información referida al reporte de casos y funcionamiento del mecanismo (directores UE, Comisiones de Convivencia en coordinación con DNA).</label>
                                                     <input type="radio" id="e3t" name="e3" value="0" /> Aprobado
                                                     <input type="radio" id="e3f" name="e3" value="1" /> Reprobado
 
@@ -359,7 +376,7 @@
 
                                             <div class="col-lg">
                                                 <fieldset class="form-group">
-                                                    <label class="form-label semibold">4. Informe de implementacion por UE del PCPA.</label>
+                                                    <label class="form-label semibold">4. Socialización de la experiencia.</label>
                                                     <input type="radio" id="e4t" name="e4" value="0" /> Aprobado
                                                     <input type="radio" id="e4f" name="e4" value="1" /> Reprobado
                                                 </fieldset>
@@ -402,8 +419,9 @@
                     $output["a_nombre"] = $row["a_nombre"];
                     $output["a_director_nombre"] = $row["a_director_nombre"];
                     $output["a_director_tel"] = $row["a_director_tel"];
-                    $output["a_pcpa"] = $row["a_pcpa"];
+                    $output["a_dna"] = $row["a_dna"];
                     $output["a_tecnico"] = $row["a_tecnico"];
+                    $output["a_centro_salud"] = $row["a_centro_salud"];
                     $output["a_docen_ini_v"] = $row["a_docen_ini_v"];
                     $output["a_docen_ini_m"] = $row["a_docen_ini_m"];
                     $output["a_docen_pri_v"] = $row["a_docen_pri_v"];

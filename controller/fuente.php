@@ -37,9 +37,18 @@
             if(is_array($datos)==true and count($datos)>0){
                 foreach($datos as $row)
                 {
+                    if($_GET["id_sel"]==$row['id_fuente']){
+                        $html.= "<option value='".$row['id_fuente']."'selected>".$row['nombre_fue']."</option";
+
+                    }
+                    else{
                         $html.= "<option value='".$row['id_fuente']."'>".$row['nombre_fue']."</option>";
+                    }
+                        
 /*                     $html.= "<option value=''>".$row['id_fuente'].'. '.$row['nombre'].', '.$row['departamento']."</option>";
- */                }
+
+
+ */             }
                 echo $html;
             }
         break;

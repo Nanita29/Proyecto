@@ -13,23 +13,20 @@ $(document).ready(function() {
     
     dataSep=data.split(',')
 
-    var id_unidad_a =dataSep[0];
-    var id_comunidad = dataSep[1];
-    var id_fuente =dataSep[2]; 
+    var id_miembro =dataSep[0];
+    var id_departamento = dataSep[1];
 console.log(dataSep);
 
 
    
-    $.post("../../controller/unidad_a.php?op=listardetalle",{ id_unidad_a : id_unidad_a },function(data){
+    $.post("../../controller/miembro.php?op=listardetalle",{ id_miembro : id_miembro },function(data){
         $('#unidad_a_detalle').html(data);
+        console.log(id_miembro);
     });
 
-    $.post("../../controller/comunidad.php?op=combo&id_sel="+id_comunidad,function(data, status){
-        $('#id_comunidad').html(data);
-    });
 
-    $.post("../../controller/fuente.php?op=combo&id_sel="+id_fuente,function(data, status){
-        $('#id_fuente').html(data);
+    $.post("../../controller/departamento.php?op=combo&id_sel="+id_departamento,function(data, status){
+        $('#id_departamento').html(data);
     });
 
     $.post("../../controller/estado.php?op=combo",function(data, status){
@@ -67,7 +64,7 @@ function guardaryeditar(e){
     if(false){
     }else{
         $.ajax({
-            url: "../../controller/unidad_a.php?op=update",
+            url: "../../controller/miembro.php?op=update",
             type: "POST",
             data: formData,
             contentType: false,
@@ -84,9 +81,9 @@ function guardaryeditar(e){
     }
 }
 
-function listar_unidad_a_id(id_unidad_a){
-    $.post("../../controller/unidad_a.php?op=listar_unidad_a_id", { id_unidad_a : id_unidad_a }, function (data) {
-        $('#id_unidad_a').html(data);
+function listar_dde_id(id_dde){
+    $.post("../../controller/miembro.php?op=listar_dde_id", { id_dde : id_dde }, function (data) {
+        $('#id_dde').html(data);
         $('#a_cod').val(data.a_cod);
                 $('#a_nombre').val(data.a_nombre);
     }); 

@@ -15,12 +15,12 @@ $(document).ready(function() {
 
     var id_unidad_a =dataSep[0];
     var id_comunidad = dataSep[1];
-    var id_fuente =dataSep[2]; 
+    var id_fuente =dataSep[2];
 console.log(dataSep);
 
 
    
-    $.post("../../controller/unidad_a.php?op=listardetalle",{ id_unidad_a : id_unidad_a },function(data){
+    $.post("../../controller/unidad_b.php?op=listardetalle",{ id_unidad_a : id_unidad_a },function(data){
         $('#unidad_a_detalle').html(data);
     });
 
@@ -67,7 +67,7 @@ function guardaryeditar(e){
     if(false){
     }else{
         $.ajax({
-            url: "../../controller/unidad_a.php?op=update",
+            url: "../../controller/unidad_b.php?op=update",
             type: "POST",
             data: formData,
             contentType: false,
@@ -85,7 +85,7 @@ function guardaryeditar(e){
 }
 
 function listar_unidad_a_id(id_unidad_a){
-    $.post("../../controller/unidad_a.php?op=listar_unidad_a_id", { id_unidad_a : id_unidad_a }, function (data) {
+    $.post("../../controller/unidad_b.php?op=listar_unidad_a_id", { id_unidad_a : id_unidad_a }, function (data) {
         $('#id_unidad_a').html(data);
         $('#a_cod').val(data.a_cod);
                 $('#a_nombre').val(data.a_nombre);

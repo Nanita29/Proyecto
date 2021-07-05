@@ -9,11 +9,22 @@
             if(is_array($datos)==true and count($datos)>0){
                 foreach($datos as $row)
                 {
+                    if($_GET["id_sel"]==$row['id_comunidad']){
+                        $html.= "<option value='".$row['id_comunidad']."'selected>".$row['nombre_com'].', '.$row['nombre_dep']."</option>";
+
+                    }
+                    else{
+                        $html.= "<option value='".$row['id_comunidad']."'>".$row['nombre_com'].', '.$row['nombre_dep']."</option>";
+                    }
+                    
                    // $html.= "<option value=''>".$row['id_comunidad']."</option>";
-                    $html.= "<option value='".$row['id_comunidad']."'>".$row['nombre_com'].', '.$row['nombre_dep']."</option>";
+                    
+
                 }
                 echo $html;
             }
         break;
+
+        
     }
 ?>

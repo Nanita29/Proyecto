@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
     <?php require_once("../MainHead/head.php");?>
-	<title>Educo : Editar Unidad Educativa "(R2.IVO6)"</title>
+	<title>Educo : Editar Miembro del Personal Técnico "(R1.IVO2)</title>
 </head>
 <body class="with-side-menu">
 
@@ -28,11 +28,11 @@
 				<div class="tbl">
 					<div class="tbl-row">
 						<div class="tbl-cell">
-							<h3>Editar Unidad Educativa</h3>
+							<h3>Editar Miembro del Personal Técnico "(R1.IVO2)</h3>
 							<ol class="breadcrumb breadcrumb-simple">
 								<li><a href="../Home/index.php">Inicio</a></li>
-                                <li><a href="../Consultar_Unidad_A/index.php">Consultar Unidad Educativa "(R2.IVO6)"</a></li>
-								<li class="active">Editar Unidad Educativa "(R2.IVO6)"</li>
+                                <li><a href="../Consultar_Miembro/index.php">Consultar Miembro del Personal Técnico "(R1.IVO2)</a></li>
+								<li class="active">Editar Miembro del Personal Técnico "(R1.IVO2)</li>
 							</ol>
 						</div>
 					</div>
@@ -52,7 +52,7 @@
 
 	<?php require_once("../MainJs/js.php");?>
 	
-	<script type="text/javascript" src="cambio_unidad_a.js"></script>
+	<script type="text/javascript" src="cambio_miembro.js"></script>
 
 </body>
 </html>
