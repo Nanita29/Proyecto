@@ -34,127 +34,137 @@
             }
         }
 
-        /* /* public function insert_usuario($usu_nom,$usu_ape,$usu_correo,$usu_pass,$rol_id){
+        public function insert_usuario($nombre_usu,$apellido_usu,$usu_correo,$usu_pass,$rol_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="INSERT INTO usuario (usu_id, usu_nom, usu_ape, usu_correo, usu_pass, rol_id, fech_crea, fech_modi, fech_elim, est) VALUES (NULL,?,?,?,MD5(?),?,now(), NULL, NULL, '1');";
+            $sql="INSERT INTO usuario (id_usuario, nombre_usu, apellido_usu, usu_correo, usu_pass, rol_id, fecha_crea, fecha_mod, fecha_elim,
+             estado) VALUES (NULL,?,?,?,?,?,now(), NULL, NULL, '0');";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $usu_nom);
-            $sql->bindValue(2, $usu_ape);
+            $sql->bindValue(1, $nombre_usu);
+            $sql->bindValue(2, $apellido_usu);
             $sql->bindValue(3, $usu_correo);
             $sql->bindValue(4, $usu_pass);
             $sql->bindValue(5, $rol_id);
             $sql->execute();
             return $resultado=$sql->fetchAll();
-        } */
+        }
 
-        /* public function update_usuario($usu_id,$usu_nom,$usu_ape,$usu_correo,$usu_pass,$rol_id){
+        public function update_usuario($id_usuario,$nombre_usu,$apellido_usu,$usu_correo,$usu_pass,$rol_id){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="UPDATE usuario set
-                usu_nom = ?,
-                usu_ape = ?,
+                nombre_usu = ?,
+                apellido_usu = ?,
                 usu_correo = ?,
                 usu_pass = ?,
                 rol_id = ?
                 WHERE
-                usu_id = ?";
+                id_usuario = ?";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $usu_nom);
-            $sql->bindValue(2, $usu_ape);
+            $sql->bindValue(1, $nombre_usu);
+            $sql->bindValue(2, $apellido_usu);
             $sql->bindValue(3, $usu_correo);
             $sql->bindValue(4, $usu_pass);
             $sql->bindValue(5, $rol_id);
-            $sql->bindValue(6, $usu_id);
+            $sql->bindValue(6, $id_usuario);
             $sql->execute();
             return $resultado=$sql->fetchAll();
-        } */
+        }
 
-        /* public function delete_usuario($usu_id){
+        public function delete_usuario($id_usuario){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="call sp_d_usuario_01(?)";
+            $sql="DELETE FROM usuario WHERE (id_usuario = ?);";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $usu_id);
+            $sql->bindValue(1, $id_usuario);
             $sql->execute();
             return $resultado=$sql->fetchAll();
-        } */
+        }
 
-        /* public function get_usuario(){
+        public function get_usuario(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="call sp_l_usuario_01()";
-            $sql=$conectar->prepare($sql);
-            $sql->execute();
-            return $resultado=$sql->fetchAll();
-        } */
-
-        /* public function get_usuario_x_rol(){
-            $conectar= parent::conexion();
-            parent::set_names();
-            $sql="SELECT * FROM usuario where est=1 and rol_id=2";
+            $sql="SELECT * FROM usuario;";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll();
-        } */
+        }
 
-        /* public function get_usuario_x_id($usu_id){
+        public function get_usuario_x_id($id_usuario){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="call sp_l_usuario_02(?)";
+            $sql="SELECT * FROM usuario  WHERE id_usuario = ?";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $usu_id);
+            $sql->bindValue(1, $id_usuario);
             $sql->execute();
             return $resultado=$sql->fetchAll();
-        } */
+        }
 
-        /* public function get_usuario_total_x_id($usu_id){
+        //GRAFICOS
+        public function get_total_ua($id_usuario){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT COUNT(*) as TOTAL FROM tm_ticket where usu_id = ?";
+            $sql="SELECT COUNT(*) as TOTAL FROM unidad_educativa_a where id_estado = 2";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $usu_id);
+            $sql->bindValue(1, $id_usuario);
             $sql->execute();
             return $resultado=$sql->fetchAll();
-        } */
+        }
 
-        /* public function get_usuario_totalabierto_x_id($usu_id){
+        public function get_total_ub($id_usuario){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT COUNT(*) as TOTAL FROM tm_ticket where usu_id = ? and tick_estado='Abierto'";
+            $sql="SELECT COUNT(*) as TOTAL FROM unidad_educativa_a where id_estado = 3";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $usu_id);
+            $sql->bindValue(1, $id_usuario);
             $sql->execute();
             return $resultado=$sql->fetchAll();
-        } */
+        }
 
-        /* public function get_usuario_totalcerrado_x_id($usu_id){
+        public function get_total_dde($id_usuario){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT COUNT(*) as TOTAL FROM tm_ticket where usu_id = ? and tick_estado='Cerrado'";
+            $sql="SELECT COUNT(*) as TOTAL FROM dde where id_estado = 1";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $usu_id);
+            $sql->bindValue(1, $id_usuario);
             $sql->execute();
             return $resultado=$sql->fetchAll();
-        } */
+        }
 
-        /* public function get_usuario_grafico($usu_id){
+        public function get_total_m($id_usuario){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT tm_categoria.cat_nom as nom,COUNT(*) AS total
-                FROM   tm_ticket  JOIN  
-                    tm_categoria ON tm_ticket.cat_id = tm_categoria.cat_id  
-                WHERE    
-                tm_ticket.est = 1
-                and tm_ticket.usu_id = ?
-                GROUP BY 
-                tm_categoria.cat_nom 
-                ORDER BY total DESC";
+            $sql="SELECT COUNT(*) as TOTAL FROM miembro where id_estado = 4";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $usu_id);
+            $sql->bindValue(1, $id_usuario);
             $sql->execute();
             return $resultado=$sql->fetchAll();
-        }   */
+        }
+
+
+         public function get_unidades_ab($id_usuario){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT b.tipo as nom, COUNT(*) AS total
+            FROM   unidad_educativa_a a, estado b where a.id_estado = b.id_estado
+            GROUP BY a.id_estado ORDER BY  b.tipo ASC";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $id_usuario);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        } 
+
+        public function get_total_archivo($id_usuario){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT b.tipo as nom, COUNT(*) AS total
+            FROM   archivo a, estado b where a.id_tabla = b.id_estado
+            GROUP BY a.id_tabla ORDER BY  total ASC";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $id_usuario);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        } 
 
     }
 ?>

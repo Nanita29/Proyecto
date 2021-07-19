@@ -4,9 +4,9 @@
     class Conectar{
         protected $dbh;
 
-        protected function Conexion(){
+        public function Conexion(){
             try {
-                $conectar = $this->dbh = new PDO("mysql:local=localhost;dbname=proyecto_educo","root","luchin111");
+                $conectar = $this->dbh = new PDO("mysql:local=localhost;dbname=proyecto_ed","root","luchin111");
 				return $conectar;
 			} catch (Exception $e) {
 				print "¡Error BD!: " . $e->getMessage() . "<br/>";
