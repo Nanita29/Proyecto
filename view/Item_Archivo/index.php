@@ -1,6 +1,6 @@
 <?php
   require_once("../../config/conexion.php"); 
-  if(isset($_SESSION["id_usuario"])){ 
+  if(isset($_SESSION["id_usuario"])AND $_SESSION["rol_id"]==1 OR $_SESSION["rol_id"]==3){ 
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,7 +33,13 @@
 			</header>
 
 			<div class="box-typical box-typical-padding">
-				<button type="button" id="btnnuevo" class="btn btn-inline btn-primary">Nuevo Registro</button>
+				<?php
+					if ($_SESSION["rol_id"]==1){ 
+				?>
+					<button type="button" id="btnnuevo" class="btn btn-inline btn-primary">Nuevo Registro</button>
+				<?php
+					}
+				?>
 				<table id="archivo_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
 					<thead>
 						<tr>

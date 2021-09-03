@@ -42,11 +42,12 @@
                         <div class="form-group">
                             <label class="form-label" for="tipo_ar">Tipo de Archivo</label>
                             <select class="select2" id="tipo_ar" name="tipo_ar">
-                                <option value="A">A</option>
-                                <option value="B">B</option>
-                                <option value="C">C</option>
-                                <option value="D">D</option>
-                                <option value="E">E</option>
+                                <option value="Actas">Actas</option>
+                                <option value="Documentos de planificación y cronograma">Documentos de planificación y cronograma</option>
+                                <option value="Documentos de buenas prácticas">Documentos de buenas prácticas</option>
+                                <option value="Reporte de aplicación del protocolo y otras normativas">Reporte de aplicación del protocolo y otras normativas</option>
+                                <option value="Reporte de visita a la UE">Reporte de visita a la UE</option>
+                                <option value="Otros">Otros</option>
                             </select>
                         </div>
                     </div>

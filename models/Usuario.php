@@ -7,16 +7,16 @@
             if(isset($_POST["enviar"])){
                 $correo = $_POST["usu_correo"];
                 $pass = $_POST["usu_pass"];
-                $rol = $_POST["rol_id"];
+                //$rol = $_POST["rol_id"];
                 if(empty($correo) and empty($pass)){
                     header("Location:".conectar::ruta()."index.php?m=2");
 					exit();
                 }else{
-                    $sql = "SELECT * FROM usuario WHERE usu_correo=? and usu_pass=? and rol_id=?";
+                    $sql = "SELECT * FROM usuario WHERE usu_correo=? and usu_pass=?";
                     $stmt=$conectar->prepare($sql);
                     $stmt->bindValue(1, $correo);
                     $stmt->bindValue(2, $pass);
-                    $stmt->bindValue(3, $rol);
+                    //$stmt->bindValue(3, $rol);
                     $stmt->execute();
                     $resultado = $stmt->fetch();
                     if (is_array($resultado) and count($resultado)>0){
@@ -100,71 +100,49 @@
             return $resultado=$sql->fetchAll();
         }
 
-        //GRAFICOS
-        public function get_total_ua($id_usuario){
+        public function agregar_dpto($id_usuario,$id_departamento){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT COUNT(*) as TOTAL FROM unidad_educativa_a where id_estado = 2";
+            $sql="INSERT INTO rol (`id_usuario`, `id_departamento`) VALUES (?, ?);";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);
+            $sql->bindValue(2, $id_departamento);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
 
-        public function get_total_ub($id_usuario){
+        public function listar_dpto($id_usuario){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT COUNT(*) as TOTAL FROM unidad_educativa_a where id_estado = 3";
+            $sql="SELECT a.nombre_dep
+            FROM  departamento a, rol b WHERE  a.id_departamento = b.id_departamento AND b.id_usuario = $id_usuario GROUP BY a.nombre_dep;";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $id_usuario);
             $sql->execute();
+            
             return $resultado=$sql->fetchAll();
-        }
-
-        public function get_total_dde($id_usuario){
-            $conectar= parent::conexion();
-            parent::set_names();
-            $sql="SELECT COUNT(*) as TOTAL FROM dde where id_estado = 1";
-            $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $id_usuario);
-            $sql->execute();
-            return $resultado=$sql->fetchAll();
-        }
-
-        public function get_total_m($id_usuario){
-            $conectar= parent::conexion();
-            parent::set_names();
-            $sql="SELECT COUNT(*) as TOTAL FROM miembro where id_estado = 4";
-            $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $id_usuario);
-            $sql->execute();
-            return $resultado=$sql->fetchAll();
-        }
-
-
-         public function get_unidades_ab($id_usuario){
-            $conectar= parent::conexion();
-            parent::set_names();
-            $sql="SELECT b.tipo as nom, COUNT(*) AS total
-            FROM   unidad_educativa_a a, estado b where a.id_estado = b.id_estado
-            GROUP BY a.id_estado ORDER BY  b.tipo ASC";
-            $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $id_usuario);
-            $sql->execute();
-            return $resultado=$sql->fetchAll();
+            print_r ($sql);
         } 
 
-        public function get_total_archivo($id_usuario){
-            $conectar= parent::conexion();
-            parent::set_names();
-            $sql="SELECT b.tipo as nom, COUNT(*) AS total
-            FROM   archivo a, estado b where a.id_tabla = b.id_estado
-            GROUP BY a.id_tabla ORDER BY  total ASC";
-            $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $id_usuario);
-            $sql->execute();
-            return $resultado=$sql->fetchAll();
-        } 
+        
+
+        
+
+        
+
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
 
     }
 ?>

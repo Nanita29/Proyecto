@@ -80,9 +80,9 @@
                         <div class="float-right reset">
                             <a href="reset-password.html">Cambiar Contraseña</a>
                         </div>
-                        <div class="float-left reset">
+                        <!-- <div class="float-left reset">
                             <a href="#" id="btnsoporte">Acceso Soporte</a>
-                        </div>
+                        </div> -->
                     </div>
                     <input type="hidden" name="enviar" class="form-control" value="si">
                     <button type="submit" class="btn btn-rounded">Acceder</button>

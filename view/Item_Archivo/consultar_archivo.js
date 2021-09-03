@@ -81,6 +81,7 @@ function guardar_archivo(e){
             type: "info",
             showCancelButton: true,
             confirmButtonText: "Continuar",
+            cancelButtonText: "Cancelar",
             showLoaderOnConfirm: true,
             closeOnConfirm: false
           },
@@ -93,15 +94,21 @@ function guardar_archivo(e){
                     processData: false,
                     success: function(datos){    
                         console.log(datos);
-                        setTimeout(function () {
-                            swal("¡Correcto!", "Registrado Correctamente", "success");
-                            $('#archivo_form')[0].reset();
-                            $("#modal_archivo").modal('hide');
-                            $('#archivo_data').DataTable().ajax.reload();
-                          }, 2000);
+                        swal("¡Correcto!", "Registrado Correctamente", "success");
+                        $('#archivo_form')[0].reset();
+                        $("#modal_archivo").modal('hide');
+                        $('#archivo_data').DataTable().ajax.reload();
+                    },
+                    error: function(datos){
+                        swal({
+                            title: "¡Error!",
+                            text: "No registrado Correctamente",
+                            type: "error",
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonText: "Aceptar"
+                        })
                     }
-                }); 
-                
+                });        
           });
         
     }
@@ -110,6 +117,35 @@ function guardar_archivo(e){
 function archivo_data(){
 
     $('#modal_archivo_data').modal('show');
+}
+
+function eliminar(id_archivo){
+    swal({
+        title: "¡Advertencia!",
+        text: "¿Está seguro de eliminar el registro?",
+        type: "error",
+        showCancelButton: true,
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "Continuar",
+        cancelButtonText: "Cancelar",
+        closeOnConfirm: false
+    },
+    function(isConfirm) {
+        if (isConfirm) {
+            $.post("../../controller/archivo.php?op=eliminar", {id_archivo : id_archivo}, function (data) {
+
+            }); 
+
+            $('#archivo_data').DataTable().ajax.reload();	
+
+            swal({
+                title: "Alerta",
+                text: "Datos eliminados",
+                type: "success",
+                confirmButtonClass: "btn-success"
+            });
+        }
+    });
 }
 
 $(document).on("click","#btnnuevo", function(){

@@ -35,21 +35,37 @@
 
 			<div class="box-typical box-typical-padding">
 
-			<button type="button" id="btnnuevo" class="btn btn-inline btn-primary">Nuevo Registro</button>
+				<?php
+					if ($_SESSION["rol_id"]==1 OR $_SESSION["rol_id"]==2){ 
+				?>
+					<button type="button" id="btnnuevo" class="btn btn-inline btn-primary">Nuevo Registro</button>
+				<?php
+					}
+				?>
 
 				<table id="unidad_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
 					<thead>
 						<tr>
-							<th class="text-center">Cod</th>
-							<th class="text-center">Nombre</th>
-							<th class="text-center">Director</th>
-                            <th class="text-center">Director Telf.</th>
-                            <th class="text-center">PCPA</th>
-                            <th class="text-center">Técnico</th>
-                            <th class="text-center">Avance X (%)</th>
-							<th class="text-center">Avance Y (%)</th> 
-							<th class="text-center">Creador</th>
-							<th class="text-center" style="width: 12%">Acción</th>
+							<th class="text-center">Acción</th>
+							<th class="text-center">Departamento</th>
+							<th class="text-center">Municipio</th>
+							<th class="text-center">Comunidad</th>
+							<th class="text-center">U.E.</th>
+							<th class="text-center">Director/Telf</th>
+							<th class="text-center">Centro Salud</th>
+							<th class="text-center">DNA</th>
+                            <th class="text-center">Av. X (%)</th>
+							<th class="text-center">Av. Y (%)</th>
+							<th class="text-center">ESTADOS DE MONITOREO (X): 1. CONOCEN LA NORMATIVA RM 2021/04 PLANES DE CONVIVENCIA PACÍFICA Y ARMÓNICA: </th>
+							<th class="text-center">ESTADOS DE MONITOREO (X): 2. DESARROLLARON TALLERES PARA EL DISEÑO DE PCPA, CON REPRESENTANTES POR UNIDAD EDUCATIVA: </th>
+							<th class="text-center">ESTADOS DE MONITOREO (X): 3. FIRMA Y ENTREGA DE PCPA: </th>
+							<th class="text-center">ESTADOS DE MONITOREO (X): 4. INFORME DE IMPLEMENTACIÓN POR UE DEL PCPA:</th>
+							<th class="text-center">ESTADOS DE MONITOREO (Y): 1. SOCIALIZACIÓN DEL PROTOCOLO (UE PRIORIZADAS) Y DNA: </th>
+							<th class="text-center">ESTADOS DE MONITOREO (Y): 2. ELABORACIÓN - APROBACIÓN DEL MECANISMO DE REFERENCIA Y CONTRA REFERENCIA DE CASOS (DDE, UE PRIORIZADAS Y DNA):  </th>
+							<th class="text-center">ESTADOS DE MONITOREO (Y): 3. GESTIÓN PARA RECOJO DE INFORMACIÓN REFERIDA AL REPORTE DE CASOS Y FUNCIONAMIENTO DEL MECANISMO (DIRECTORES UE, COMISIONES DE CONVIVENCIA EN COORDINACIÓN CON DNA): </th>
+							<th class="text-center">ESTADOS DE MONITOREO (Y): 4. SOCIALIZACIÓN DE LA EXPERIENCIA: </th>
+
+							
 						</tr>
 					</thead>
 					<tbody>

@@ -1,6 +1,6 @@
 <?php
   require_once("../../config/conexion.php"); 
-  if(isset($_SESSION["id_usuario"])){ 
+  if(isset($_SESSION["id_usuario"]) AND $_SESSION["rol_id"]==1){ 
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,10 +39,9 @@
 						<tr>
 							<th class="text-center" style="width: 10%;">Nombre</th>
 							<th class="text-center" style="width: 10%;">Apellido</th>
-							<th class="text-center" class="d-none d-sm-table-cell" style="width: 40%;">Correo</th>
-							<th class="text-center" class="d-none d-sm-table-cell" style="width: 5%;">Rol</th>
-							<th class="text-center" class="text-center" style="width: 5%;"></th>
-							<th class="text-center" class="text-center" style="width: 5%;"></th>
+							<th class="text-center" style="width: 40%;">Correo</th>
+							<th class="text-center" style="width: 5%;">Rol</th>
+							<th class="text-center" class="text-center" style="width: 10%;">Acción</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -56,6 +55,8 @@
 	<!-- Contenido -->
 
 	<?php require_once("modal_usuario.php");?>
+	<?php require_once("modal_departamento.php");?>
+	<?php require_once("modal_departamento_data.php");?>
 
 	<?php require_once("../MainJs/js.php");?>
 	

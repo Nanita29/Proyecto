@@ -13,6 +13,10 @@
             }
         break;
 
+        case "agregar_dpto":
+            $usuario->agregar_dpto($_POST["id_usuario2"],$_POST["id_departamento"]);
+        break;
+
         case "listar":
             $datos=$usuario->get_usuario();
             $data= Array();
@@ -26,14 +30,35 @@
                     $sub_array[] = '<span class="label label-pill label-success">Administrador</span>';
                 }
                 if ($row["rol_id"]=="2"){
-                    $sub_array[] = '<span class="label label-pill label-info">Rol 2</span>';
+                    $sub_array[] = '<span class="label label-pill label-info">Técnico</span>';
                 }
                 if ($row["rol_id"]=="3"){
-                    $sub_array[] = '<span class="label label-pill label-secondary">Rol 3</span>';
+                    $sub_array[] = '<span class="label label-pill label-secondary">Lectura</span>';
                 }
 
-                $sub_array[] = '<button type="button" onClick="editar('.$row["id_usuario"].');"  id="'.$row["id_usuario"].'" class="btn btn-inline btn-warning btn-sm ladda-button"><i class="fa fa-edit"></i></button>';
-                $sub_array[] = '<button type="button" onClick="eliminar('.$row["id_usuario"].');"  id="'.$row["id_usuario"].'" class="btn btn-inline btn-danger btn-sm ladda-button"><i class="fa fa-trash"></i></button>';
+                
+                if ($row["rol_id"]=="2"){
+                    $sub_array[] = 
+                '<button type="button" onClick="editar('.$row["id_usuario"].');"  id="'.$row["id_usuario"].'" 
+                class="btn btn-inline btn-warning btn-sm ladda-button"><i class="fa fa-edit"></i></button>
+
+                <button type="button" onClick="departamento_data('.$row["id_usuario"].');"  id="'.$row["id_usuario"].'" 
+                class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-globe"></i></button>
+
+                <button type="button" onClick="departamento('.$row["id_usuario"].');"  id="'.$row["id_usuario"].'" 
+                class="btn btn-inline btn-info btn-sm ladda-button"><i class="fa fa-plus"></i></button>
+                
+                <button type="button" onClick="eliminar('.$row["id_usuario"].');"  id="'.$row["id_usuario"].'" 
+                class="btn btn-inline btn-danger btn-sm ladda-button"><i class="fa fa-trash"></i></button>';
+                
+                }
+                else{
+                    $sub_array[] = 
+                    '<button type="button" onClick="editar('.$row["id_usuario"].');"  id="'.$row["id_usuario"].'" class="btn btn-inline btn-warning btn-sm ladda-button"><i class="fa fa-edit"></i></button>
+                    
+                    <button type="button" onClick="eliminar('.$row["id_usuario"].');"  id="'.$row["id_usuario"].'" class="btn btn-inline btn-danger btn-sm ladda-button"><i class="fa fa-trash"></i></button>';
+                }
+
                 $data[] = $sub_array;
             }
 
@@ -64,90 +89,53 @@
                 echo json_encode($output);
             }   
         break;
-//GRAFICOS
-        case "total_ua";
-            $datos=$usuario->get_total_ua($_POST["id_usuario"]);  
-            if(is_array($datos)==true and count($datos)>0){
-                foreach($datos as $row)
-                {
-                    $output["TOTAL"] = $row["TOTAL"];
-                }
-                echo json_encode($output);
+
+        case "listar_dpto":
+            $datos=$usuario->listar_dpto($_GET['id_usuario']);
+            
+            $data= Array();
+            foreach($datos as $row){
+                $sub_array = array();
+                /* CAMPOS EN LA TABLA: */
+                $sub_array[] = $row["nombre_dep"];
+
+                $data[] = $sub_array;
             }
-        break;
 
-        case "total_ub";
-            $datos=$usuario->get_total_ub($_POST["id_usuario"]);  
-            if(is_array($datos)==true and count($datos)>0){
-                foreach($datos as $row)
-                {
-                    $output["TOTAL"] = $row["TOTAL"];
-                }
-                echo json_encode($output);
-            }
+            $results = array(
+                "sEcho"=>1, 
+                "iTotalRecords"=>count($data),
+                "iTotalDisplayRecords"=>count($data),
+                "aaData"=>$data);
+            echo json_encode($results);
         break;
-
-        case "total_dde";
-            $datos=$usuario->get_total_dde($_POST["id_usuario"]);  
-            if(is_array($datos)==true and count($datos)>0){
-                foreach($datos as $row)
-                {
-                    $output["TOTAL"] = $row["TOTAL"];
-                }
-                echo json_encode($output);
-            }
-        break;
-
-        case "total_m";
-            $datos=$usuario->get_total_m($_POST["id_usuario"]);  
-            if(is_array($datos)==true and count($datos)>0){
-                foreach($datos as $row)
-                {
-                    $output["TOTAL"] = $row["TOTAL"];
-                }
-                echo json_encode($output);
-            }
-        break;
-
-        case "unidades_ab";
-            $datos=$usuario->get_unidades_ab($_POST["id_usuario"]);  
-            echo json_encode($datos);
-        break;
-
-        case "total_archivo";
-            $datos=$usuario->get_total_archivo($_POST["id_usuario"]);  
-            echo json_encode($datos);
-        break;
-
-       /* 
         
 
-        case "totalabierto";
-            $datos=$usuario->get_usuario_totalabierto_x_id($_POST["id_usuario"]);  
-            if(is_array($datos)==true and count($datos)>0){
-                foreach($datos as $row)
-                {
-                    $output["TOTAL"] = $row["TOTAL"];
-                }
-                echo json_encode($output);
-            }
-        break;
+        
 
-        case "totalcerrado";
-            $datos=$usuario->get_usuario_totalcerrado_x_id($_POST["id_usuario"]);  
-            if(is_array($datos)==true and count($datos)>0){
-                foreach($datos as $row)
-                {
-                    $output["TOTAL"] = $row["TOTAL"];
-                }
-                echo json_encode($output);
-            }
-        break;
+        
 
-        case "grafico";
-            $datos=$usuario->get_usuario_grafico($_POST["id_usuario"]);  
-            echo json_encode($datos);
-        break; */
+        
+
+        
+
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
 
  
     }

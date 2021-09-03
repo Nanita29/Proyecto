@@ -89,7 +89,6 @@ function editar(id_unidad_a){
         $('#id_fuente').val(data.id_fuente);
         $('#a_cod').val(data.a_cod);
         $('#a_nombre').val(data.a_nombre);
-        $('#id_usuario').val(data.id_usuario);
         $('#a_director_nombre').val(data.a_director_nombre);
         $('#a_director_tel').val(data.a_director_tel);
         $('#a_dna').val(data.a_dna);
@@ -169,11 +168,11 @@ function archivo_data(id_unidad_a,id_estado){
         $('#id_unidad_a3').val(data.id_unidad_a);
         $('#a_cod3').val(data.a_cod);
     });
-    console.log('../../controller/unidad_b.php?op=listar_archivo&id_unidad_a='+id_unidad_a+'&id_estado='+ id_estado)
+    console.log('../../controller/unidad_b.php?op=listar_archivo&id_unidad_a='+id_unidad_a+'&id_estado='+ 3)
     
     tabla2=$('#archivo_data').dataTable({
         "ajax":{
-            url: '../../controller/unidad_b.php?op=listar_archivo&id_unidad_a='+id_unidad_a+'&id_estado='+id_estado,
+            url: '../../controller/unidad_b.php?op=listar_archivo&id_unidad_a='+id_unidad_a+'&id_estado='+3,
             type : "post",
             dataType : "json",						
             error: function(e){
@@ -269,16 +268,82 @@ function guardar_archivo(e){
                 processData: false,
                 success: function(datos){    
                     console.log(datos);
-                    setTimeout(function () {
                         swal("¡Correcto!", "Registrado Correctamente", "success");
                         $('#archivo_form')[0].reset();
                         $("#modal_archivo").modal('hide');
                         $('#unidad_data').DataTable().ajax.reload();
-                      }, 2000);
-                }
+                     
+                },
+                    error: function(datos){
+                        swal({
+                            title: "¡Error!",
+                            text: "No registrado Correctamente",
+                            type: "error",
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonText: "Aceptar"
+                        })
+                    }
             }); 
           });
     }  
+}
+
+function eliminar(id_unidad_a){
+    swal({
+        title: "¡Advertencia!",
+        text: "¿Está seguro de eliminar el registro?",
+        type: "error",
+        showCancelButton: true,
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "Continuar",
+        cancelButtonText: "Cancelar",
+        closeOnConfirm: false
+    },
+    function(isConfirm) {
+        if (isConfirm) {
+            $.post("../../controller/unidad_b.php?op=eliminar", {id_unidad_a : id_unidad_a}, function (data) {
+
+            }); 
+
+            $('#unidad_data').DataTable().ajax.reload();	
+
+            swal({
+                title: "Alerta",
+                text: "Datos eliminados",
+                type: "success",
+                confirmButtonClass: "btn-success"
+            });
+        }
+    });
+}
+
+function eliminar_archivo(id_archivo){
+    swal({
+        title: "¡Advertencia!",
+        text: "¿Está seguro de eliminar el registro?",
+        type: "error",
+        showCancelButton: true,
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "Continuar",
+        cancelButtonText: "Cancelar",
+        closeOnConfirm: false
+    },
+    function(isConfirm) {
+        if (isConfirm) {
+            $.post("../../controller/unidad_b.php?op=eliminar_archivo", {id_archivo : id_archivo}, function (data) {
+
+            }); 
+
+            $('#archivo_data').DataTable().ajax.reload();	
+
+            swal({
+                title: "Alerta",
+                text: "Datos eliminados",
+                type: "success",
+                confirmButtonClass: "btn-success"
+            });
+        }
+    });
 }
 
 $(document).on("click","#btnnuevo", function(){

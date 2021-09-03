@@ -157,7 +157,7 @@ function archivo_data(id_dde, id_estado){
     console.log(id_estado)
     tabla2=$('#archivo_data').dataTable({
         "ajax":{
-            url: '../../controller/dde.php?op=listar_archivo&id_dde='+id_dde+'&id_estado='+id_estado,
+            url: '../../controller/dde.php?op=listar_archivo&id_dde='+id_dde+'&id_estado='+1,
             type : "post",
             dataType : "json",						
             error: function(e){
@@ -269,18 +269,83 @@ function guardar_archivo(e){
                 processData: false,
                 success: function(datos){    
                     console.log(datos);
-                    setTimeout(function () {
                         swal("¡Correcto!", "Registrado Correctamente", "success");
                         $('#archivo_form')[0].reset();
                         $("#modal_archivo").modal('hide');
                         $('#dde_data').DataTable().ajax.reload();
-                      }, 2000);
+                    
+                },
+                error: function(datos){
+                    swal({
+                        title: "¡Error!",
+                        text: "No registrado Correctamente",
+                        type: "error",
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Aceptar"
+                    })
                 }
             }); 
           });
     }  
 }
 
+function eliminar(id_dde){
+    swal({
+        title: "¡Advertencia!",
+        text: "¿Está seguro de eliminar el registro?",
+        type: "error",
+        showCancelButton: true,
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "Continuar",
+        cancelButtonText: "Cancelar",
+        closeOnConfirm: false
+    },
+    function(isConfirm) {
+        if (isConfirm) {
+            $.post("../../controller/dde.php?op=eliminar", {id_dde : id_dde}, function (data) {
+
+            }); 
+
+            $('#dde_data').DataTable().ajax.reload();	
+
+            swal({
+                title: "Alerta",
+                text: "Datos eliminados",
+                type: "success",
+                confirmButtonClass: "btn-success"
+            });
+        }
+    });
+}
+
+function eliminar_archivo(id_archivo){
+    swal({
+        title: "¡Advertencia!",
+        text: "¿Está seguro de eliminar el registro?",
+        type: "error",
+        showCancelButton: true,
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "Continuar",
+        cancelButtonText: "Cancelar",
+        closeOnConfirm: false
+    },
+    function(isConfirm) {
+        if (isConfirm) {
+            $.post("../../controller/dde.php?op=eliminar_archivo", {id_archivo : id_archivo}, function (data) {
+
+            }); 
+
+            $('#archivo_data').DataTable().ajax.reload();	
+
+            swal({
+                title: "Alerta",
+                text: "Datos eliminados",
+                type: "success",
+                confirmButtonClass: "btn-success"
+            });
+        }
+    });
+}
 
 $(document).on("click","#btnnuevo", function(){
     $('#mdltitulo').html('NUEVA DIRECCIÓN DISTRITAL');

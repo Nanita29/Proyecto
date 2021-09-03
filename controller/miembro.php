@@ -10,7 +10,7 @@
 
             if(empty($_POST["id_miembro"])){       
                 $miembro->insert_miembro(
-                    $_POST["id_departamento"],
+                    $_POST["id_municipio"],
                     $_POST["id_estado"],
                     $_POST["id_usuario"],
                     $_POST["m_cod"],
@@ -27,7 +27,7 @@
             else {print_r(
                 $miembro->update_miembro(
                     $_POST["id_miembro"],
-                    $_POST["id_departamento"],
+                    $_POST["id_municipio"],
                     $_POST["id_estado"],
                     $_POST["id_usuario"],
                     $_POST["m_cod"],
@@ -47,35 +47,218 @@
         break;
 
         case "listar":
-            $datos=$miembro->listar_miembro();
-            $data= Array();
-            foreach($datos as $row){
-                $sub_array = array();
-                /* CAMPOS EN LA TABLA: */
-                $sub_array[] = $row["m_cod"];
-                $sub_array[] = $row["m_nombre"];
-                $sub_array[] = $row["m_contactos"];
-                $sub_array[] = $row["m_avance"];
-                $sub_array[] = $row["nombre_usu"]." ".$row["apellido_usu"];
 
-                $sub_array[] = 
-                '<button type="button" onClick="editar('.$row["id_miembro"].');"  id="'.$row["id_usuario"].'" class="btn btn-inline btn-warning btn-sm ladda-button"><i class="fa fa-edit"></i></button>
-                
-                <button type="button" onClick="archivo_data('.$row["id_miembro"].','.$row["id_estado"].');" id="btnarchivos"  
-                class="btn btn-inline btn-primary btn-sm ladda-button" ><i class="fa fa-file-text"></i></button>
+            if($_SESSION["rol_id"]==1){       
+                $datos=$miembro->listar_miembro();
+                $data= Array();
+                foreach($datos as $row){
+                    $sub_array = array();
+                    /* CAMPOS EN LA TABLA: */
+                    $sub_array[] = 
+                    '<button type="button" onClick="editar('.$row["id_miembro"].');"  id="'.$row["id_usuario"].'" class="btn btn-inline btn-warning btn-sm ladda-button"><i class="fa fa-edit"></i></button>
+                    
+                    <button type="button" onClick="archivo_data('.$row["id_miembro"].','.$row["id_estado"].');" id="btnarchivos"  
+                    class="btn btn-inline btn-primary btn-sm ladda-button" ><i class="fa fa-file-text"></i></button>
 
-                <button type="button" onClick="archivo('.$row["id_miembro"].');" id="btnnuevo_archivo"  
-                class="btn btn-inline btn-info btn-sm ladda-button"><i class="fa fa-plus"></i></button>';
+                    <button type="button" onClick="archivo('.$row["id_miembro"].');" id="btnnuevo_archivo"  
+                    class="btn btn-inline btn-info btn-sm ladda-button"><i class="fa fa-plus"></i></button>
+                    
+                    <button type="button" onClick="eliminar('.$row["id_miembro"].');"  id="'.$row["id_miembro"].'" 
+                    class="btn btn-inline btn-danger btn-sm ladda-button"><i class="fa fa-trash"></i></button>';
 
-                $data[] = $sub_array;
+                    $sub_array[] = $row["nombre_dep"];
+                    $sub_array[] = $row["nombre_mun"];
+                    $sub_array[] = $row["m_nombre"];
+                    $sub_array[] = $row["m_contactos"];
+                    $sub_array[] = $row["m_observacion"];
+                    $sub_array[] = $row["m_avance"];
+
+                    if ($row["e1"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e2"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e3"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e4"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e5"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e6"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+
+                    $data[] = $sub_array;
+                }
+
+                $results = array(
+                    "sEcho"=>1, 
+                    "iTotalRecords"=>count($data),
+                    "iTotalDisplayRecords"=>count($data),
+                    "aaData"=>$data);
+                echo json_encode($results);            
             }
 
-            $results = array(
-                "sEcho"=>1, 
-                "iTotalRecords"=>count($data),
-                "iTotalDisplayRecords"=>count($data),
-                "aaData"=>$data);
-            echo json_encode($results);
+            if($_SESSION["rol_id"]==3){       
+                $datos=$miembro->listar_miembro();
+                $data= Array();
+                foreach($datos as $row){
+                    $sub_array = array();
+                    /* CAMPOS EN LA TABLA: */
+                    $sub_array[] = 
+                    '<button type="button" onClick="archivo_data('.$row["id_miembro"].','.$row["id_estado"].');" id="btnarchivos"  
+                    class="btn btn-inline btn-primary btn-sm ladda-button" ><i class="fa fa-file-text"></i></button>';
+                    
+                    $sub_array[] = $row["nombre_dep"];
+                    $sub_array[] = $row["nombre_mun"];
+                    $sub_array[] = $row["m_nombre"];
+                    $sub_array[] = $row["m_contactos"];
+                    $sub_array[] = $row["m_observacion"];
+                    $sub_array[] = $row["m_avance"];
+
+                    if ($row["e1"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e2"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e3"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e4"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e5"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e6"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+
+                    $data[] = $sub_array;
+                }
+
+                $results = array(
+                    "sEcho"=>1, 
+                    "iTotalRecords"=>count($data),
+                    "iTotalDisplayRecords"=>count($data),
+                    "aaData"=>$data);
+                echo json_encode($results);            
+            }
+
+            if($_SESSION["rol_id"]==2){       
+                $datos=$miembro->listar_miembro_r2($_SESSION["id_usuario"]);
+                $data= Array();
+                foreach($datos as $row){
+                    $sub_array = array();
+                    /* CAMPOS EN LA TABLA: */
+                    $sub_array[] = 
+                    '<button type="button" onClick="editar('.$row["id_miembro"].');"  id="'.$row["id_usuario"].'" class="btn btn-inline btn-warning btn-sm ladda-button"><i class="fa fa-edit"></i></button>
+                    
+                    <button type="button" onClick="archivo_data('.$row["id_miembro"].','.$row["id_estado"].');" id="btnarchivos"  
+                    class="btn btn-inline btn-primary btn-sm ladda-button" ><i class="fa fa-file-text"></i></button>
+
+                    <button type="button" onClick="archivo('.$row["id_miembro"].');" id="btnnuevo_archivo"  
+                    class="btn btn-inline btn-info btn-sm ladda-button"><i class="fa fa-plus"></i></button>
+                    
+                    <button type="button" onClick="eliminar('.$row["id_miembro"].');"  id="'.$row["id_miembro"].'" 
+                    class="btn btn-inline btn-danger btn-sm ladda-button"><i class="fa fa-trash"></i></button>';
+                    $sub_array[] = $row["nombre_dep"];
+                    $sub_array[] = $row["nombre_mun"];
+                    $sub_array[] = $row["m_nombre"];
+                    $sub_array[] = $row["m_contactos"];
+                    $sub_array[] = $row["m_observacion"];
+                    $sub_array[] = $row["m_avance"];
+
+                    if ($row["e1"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e2"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e3"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e4"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e5"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e6"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+
+                    $data[] = $sub_array;
+                }
+
+                $results = array(
+                    "sEcho"=>1, 
+                    "iTotalRecords"=>count($data),
+                    "iTotalDisplayRecords"=>count($data),
+                    "aaData"=>$data);
+                echo json_encode($results);            
+            }
+
+            
         break;
 
         case "mostrar";
@@ -84,7 +267,7 @@
                 foreach($datos as $row)
                 {
                     $output["id_miembro"] = $row["id_miembro"];
-                    $output["id_departamento"] = $row["id_departamento"];
+                    $output["id_municipio"] = $row["id_municipio"];
                     $output["id_estado"] = $row["id_estado"];
                     $output["id_usuario"] = $row["id_usuario"];
                     $output["m_cod"] = $row["m_cod"];
@@ -154,11 +337,15 @@
                 $sub_array[] = $row["nombre_usu"]." ".$row["apellido_usu"];
                 
 
-                $sub_array[] = '<a download="'.$row["ruta_ar"].'" href="'.$row["ruta_ar"].'">
-                                            <button type="button" onClick=""  id="'.$row["ruta_ar"].'" class="btn btn-inline btn-primary btn-sm ladda-button">
-                                                <i class="fa fa-download"></i>
-                                            </button>
-                                        </a>';
+                $sub_array[] = 
+                '<a  href="../../config/descarga.php?id_archivo='.$row["id_archivo"].'">
+                    <button type="button" onClick=""  id="'.$row["id_archivo"].'" class="btn btn-inline btn-primary btn-sm ladda-button">
+                        <i class="fa fa-download"></i>
+                    </button>
+                </a>
+                
+                <button type="button" onClick="eliminar_archivo('.$row["id_archivo"].');"  id="'.$row["id_archivo"].'" 
+                class="btn btn-inline btn-danger btn-sm ladda-button"><i class="fa fa-trash"></i></button>';
 
                 $data[] = $sub_array;
             }
@@ -169,6 +356,68 @@
                 "iTotalDisplayRecords"=>count($data),
                 "aaData"=>$data);
             echo json_encode($results);
+        break;
+
+        case "eliminar":
+            $miembro->delete_miembro($_POST["id_miembro"]);
+        break;
+
+        case "eliminar_archivo":
+            $miembro->delete_archivo($_POST["id_archivo"]);
+        break;
+
+        //GRAFICOS
+        
+        //Total direciones
+        case "total_m";
+            $datos=$miembro->get_total_m($_POST["id_usuario"]);  
+            if(is_array($datos)==true and count($datos)>0){
+                foreach($datos as $row)
+                {
+                    $output["TOTAL"] = $row["TOTAL"];
+                }
+                echo json_encode($output);
+            }
+        break;
+        //Total unidades x depto
+        case "m_dep";
+            $datos=$miembro->get_m_dep($_POST["id_usuario"]);  
+            echo json_encode($datos);
+        break;
+        //Porcentaje de avance x e y x dpto
+        case "av_m_dep";
+            $datos=$miembro->get_av_m_dep($_POST["id_usuario"]);  
+            echo json_encode($datos);
+        break;
+        //Total estado 1 
+        case "estado1";
+            $datos=$miembro->get_estado1($_POST["id_usuario"]);  
+            echo json_encode($datos);
+        break;
+        //Total estado 2 
+        case "estado2";
+            $datos=$miembro->get_estado2($_POST["id_usuario"]);  
+            echo json_encode($datos);
+        break;
+        //Total estado 3 
+        case "estado3";
+            $datos=$miembro->get_estado3($_POST["id_usuario"]);  
+            echo json_encode($datos);
+        break;
+        //Total estado 4 
+        case "estado4";
+            $datos=$miembro->get_estado4($_POST["id_usuario"]);  
+            echo json_encode($datos);
+        break;
+        //Total estado 5 
+        case "estado5";
+            $datos=$miembro->get_estado5($_POST["id_usuario"]);  
+            echo json_encode($datos);
+        break;
+        //Total estado 6 
+        case "estado6";
+            $datos=$miembro->get_estado6($_POST["id_usuario"]);  
+            echo json_encode($datos);
         break;
     }
 ?> 

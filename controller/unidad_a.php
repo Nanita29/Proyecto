@@ -17,7 +17,8 @@
                     $_POST["a_nombre"],
                     $_POST["a_director_nombre"],
                     $_POST["a_director_tel"],
-                    $_POST["a_pcpa"],
+                    $_POST["a_dna"],
+                    $_POST["a_centro_salud"],
                     $_POST["a_tecnico"],
                     $_POST["a_docen_ini_v"],
                     $_POST["a_docen_ini_m"],
@@ -46,13 +47,15 @@
             else {
                 $unidad_a->update_unidad(
                     $_POST["id_unidad_a"],
+                    $_POST["id_usuario"],
                     $_POST["id_comunidad"],
                     $_POST["id_fuente"],
                     $_POST["a_cod"],
                     $_POST["a_nombre"],
                     $_POST["a_director_nombre"],
                     $_POST["a_director_tel"],
-                    $_POST["a_pcpa"],
+                    $_POST["a_dna"],
+                    $_POST["a_centro_salud"],
                     $_POST["a_tecnico"],
                     $_POST["a_docen_ini_v"],
                     $_POST["a_docen_ini_m"],
@@ -82,39 +85,265 @@
         break;
   
         case "listar":
-            $datos=$unidad_a->listar_unidad();
-            $data= Array();
-            foreach($datos as $row){
-                $sub_array = array();
-                /* CAMPOS EN LA TABLA: */
-                $sub_array[] = $row["a_cod"];
-                $sub_array[] = $row["a_nombre"];
-                $sub_array[] = $row["a_director_nombre"];
-                $sub_array[] = $row["a_director_tel"];
-                $sub_array[] = $row["a_pcpa"];
-                $sub_array[] = $row["a_tecnico"];
-                $sub_array[] = $row["a_avance"];
-                $sub_array[] = $row["a_avance2"];
-                $sub_array[] = $row["nombre_usu"]." ".$row["apellido_usu"];
+            if($_SESSION["rol_id"]==1){       
+                $datos=$unidad_a->listar_unidad();
+                $data= Array();
+                foreach($datos as $row){
+                    $sub_array = array();
+                    /* CAMPOS EN LA TABLA: */
+                    $sub_array[] = 
+                    '<button type="button" onClick="editar('.$row["id_unidad_a"].');"  id="'.$row["id_usuario"].'" class="btn btn-inline btn-warning btn-sm ladda-button"><i class="fa fa-edit"></i></button>
+                    
+                    <button type="button" onClick="archivo_data('.$row["id_unidad_a"].','.$row["id_estado"].');" id="btnarchivos"  
+                    class="btn btn-inline btn-primary btn-sm ladda-button" ><i class="fa fa-file-text"></i></button>
 
-                $sub_array[] = 
-                '<button type="button" onClick="editar('.$row["id_unidad_a"].');"  id="'.$row["id_usuario"].'" class="btn btn-inline btn-warning btn-sm ladda-button"><i class="fa fa-edit"></i></button>
-                
-                <button type="button" onClick="archivo_data('.$row["id_unidad_a"].','.$row["id_estado"].');" id="btnarchivos"  
-                class="btn btn-inline btn-primary btn-sm ladda-button" ><i class="fa fa-file-text"></i></button>
+                    <button type="button" onClick="archivo('.$row["id_unidad_a"].');" id="btnnuevo_archivo"  
+                    class="btn btn-inline btn-info btn-sm ladda-button"><i class="fa fa-plus"></i></button>
+                    
+                    <button type="button" onClick="eliminar('.$row["id_unidad_a"].');"  id="'.$row["id_unidad_a"].'" 
+                    class="btn btn-inline btn-danger btn-sm ladda-button"><i class="fa fa-trash"></i></button>';
 
-                <button type="button" onClick="archivo('.$row["id_unidad_a"].');" id="btnnuevo_archivo"  
-                class="btn btn-inline btn-info btn-sm ladda-button"><i class="fa fa-plus"></i></button>';
+                    $sub_array[] = $row["nombre_dep"];
+                    $sub_array[] = $row["nombre_mun"];
+                    $sub_array[] = $row["nombre_com"];
+                    $sub_array[] = $row["a_nombre"];
+                    $sub_array[] = $row["a_director_nombre"].' - '.$row["a_director_tel"];
+                    $sub_array[] = $row["a_centro_salud"];
+                    $sub_array[] = $row["a_dna"];
+                    $sub_array[] = $row["a_avance"];
+                    $sub_array[] = $row["a_avance2"];
 
-                $data[] = $sub_array;
+                    if ($row["e1"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e2"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e3"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e4"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+
+                    if ($row["e1_2"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e2_2"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e3_2"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e4_2"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+
+                    $data[] = $sub_array;
+                }
+
+                $results = array(
+                    "sEcho"=>1, 
+                    "iTotalRecords"=>count($data),
+                    "iTotalDisplayRecords"=>count($data),
+                    "aaData"=>$data);
+                echo json_encode($results);           
             }
 
-            $results = array(
-                "sEcho"=>1, 
-                "iTotalRecords"=>count($data),
-                "iTotalDisplayRecords"=>count($data),
-                "aaData"=>$data);
-            echo json_encode($results);
+            if($_SESSION["rol_id"]==3){       
+                $datos=$unidad_a->listar_unidad();
+                $data= Array();
+                foreach($datos as $row){
+                    $sub_array = array();
+                    /* CAMPOS EN LA TABLA: */
+                    $sub_array[] = 
+                    '<button type="button" onClick="archivo_data('.$row["id_unidad_a"].','.$row["id_estado"].');" id="btnarchivos"  
+                    class="btn btn-inline btn-primary btn-sm ladda-button" ><i class="fa fa-file-text"></i></button>';
+
+                    $sub_array[] = $row["nombre_dep"];
+                    $sub_array[] = $row["nombre_mun"];
+                    $sub_array[] = $row["nombre_com"];
+                    $sub_array[] = $row["a_nombre"];
+                    $sub_array[] = $row["a_director_nombre"].' - '.$row["a_director_tel"];
+                    $sub_array[] = $row["a_centro_salud"];
+                    $sub_array[] = $row["a_dna"];
+                    $sub_array[] = $row["a_avance"];
+                    $sub_array[] = $row["a_avance2"];
+
+                    if ($row["e1"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e2"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e3"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e4"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+
+                    if ($row["e1_2"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e2_2"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e3_2"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e4_2"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+
+                    $data[] = $sub_array;
+                }
+
+                $results = array(
+                    "sEcho"=>1, 
+                    "iTotalRecords"=>count($data),
+                    "iTotalDisplayRecords"=>count($data),
+                    "aaData"=>$data);
+                echo json_encode($results);           
+            }
+
+            if($_SESSION["rol_id"]==2){       
+                $datos=$unidad_a->listar_unidad_r2($_SESSION["id_usuario"]);
+                $data= Array();
+                foreach($datos as $row){
+                    $sub_array = array();
+                    /* CAMPOS EN LA TABLA: */
+                    $sub_array[] = 
+                    '<button type="button" onClick="editar('.$row["id_unidad_a"].');"  id="'.$row["id_usuario"].'" class="btn btn-inline btn-warning btn-sm ladda-button"><i class="fa fa-edit"></i></button>
+                    
+                    <button type="button" onClick="archivo_data('.$row["id_unidad_a"].','.$row["id_estado"].');" id="btnarchivos"  
+                    class="btn btn-inline btn-primary btn-sm ladda-button" ><i class="fa fa-file-text"></i></button>
+
+                    <button type="button" onClick="archivo('.$row["id_unidad_a"].');" id="btnnuevo_archivo"  
+                    class="btn btn-inline btn-info btn-sm ladda-button"><i class="fa fa-plus"></i></button>
+                    
+                    <button type="button" onClick="eliminar('.$row["id_unidad_a"].');"  id="'.$row["id_unidad_a"].'" 
+                    class="btn btn-inline btn-danger btn-sm ladda-button"><i class="fa fa-trash"></i></button>';
+
+                    $sub_array[] = $row["nombre_dep"];
+                    $sub_array[] = $row["nombre_mun"];
+                    $sub_array[] = $row["nombre_com"];
+                    $sub_array[] = $row["a_nombre"];
+                    $sub_array[] = $row["a_director_nombre"].' - '.$row["a_director_tel"];
+                    $sub_array[] = $row["a_centro_salud"];
+                    $sub_array[] = $row["a_dna"];
+                    $sub_array[] = $row["a_avance"];
+                    $sub_array[] = $row["a_avance2"];
+
+                    if ($row["e1"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e2"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e3"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e4"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+
+                    if ($row["e1_2"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e2_2"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e3_2"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+                    if ($row["e4_2"]=="2"){
+                        $sub_array[] = '<span class="label label-pill label-success">SI</span>';
+                    }
+                    else{
+                        $sub_array[] = '<span class="label label-pill label-danger">NO</span>';
+                    }
+
+                    $data[] = $sub_array;
+                }
+
+                $results = array(
+                    "sEcho"=>1, 
+                    "iTotalRecords"=>count($data),
+                    "iTotalDisplayRecords"=>count($data),
+                    "aaData"=>$data);
+                echo json_encode($results);           
+            }
+            
         break;
 
         case "mostrar";
@@ -130,8 +359,9 @@
                     $output["a_nombre"] = $row["a_nombre"];
                     $output["a_director_nombre"] = $row["a_director_nombre"];
                     $output["a_director_tel"] = $row["a_director_tel"];
-                    $output["a_pcpa"] = $row["a_pcpa"];
+                    $output["a_dna"] = $row["a_dna"];
                     $output["a_tecnico"] = $row["a_tecnico"];
+                    $output["a_centro_salud"] = $row["a_centro_salud"];
                     $output["a_docen_ini_v"] = $row["a_docen_ini_v"];
                     $output["a_docen_ini_m"] = $row["a_docen_ini_m"];
                     $output["a_docen_pri_v"] = $row["a_docen_pri_v"];
@@ -214,11 +444,15 @@
                 $sub_array[] = $row["nombre_usu"]." ".$row["apellido_usu"];
                 
 
-                $sub_array[] = '<a download="'.$row["ruta_ar"].'" href="'.$row["ruta_ar"].'">
-                                            <button type="button" onClick=""  id="'.$row["ruta_ar"].'" class="btn btn-inline btn-primary btn-sm ladda-button">
-                                                <i class="fa fa-download"></i>
-                                            </button>
-                                        </a>';
+                $sub_array[] = 
+                '<a  href="../../config/descarga.php?id_archivo='.$row["id_archivo"].'">
+                    <button type="button" onClick=""  id="'.$row["id_archivo"].'" class="btn btn-inline btn-primary btn-sm ladda-button">
+                        <i class="fa fa-download"></i>
+                    </button>
+                </a>
+                
+                <button type="button" onClick="eliminar_archivo('.$row["id_archivo"].');"  id="'.$row["id_archivo"].'" 
+                class="btn btn-inline btn-danger btn-sm ladda-button"><i class="fa fa-trash"></i></button>';
 
                 $data[] = $sub_array;
             }
@@ -229,6 +463,89 @@
                 "iTotalDisplayRecords"=>count($data),
                 "aaData"=>$data);
             echo json_encode($results);
+        break;
+
+        case "eliminar":
+            $unidad_a->delete_unidad($_POST["id_unidad_a"]);
+        break;
+
+        case "eliminar_archivo":
+            $unidad_a->delete_archivo($_POST["id_archivo"]);
+        break;
+
+        //GRAFICOS
+        
+        //Total unidades A
+        case "total_ua";
+            $datos=$unidad_a->get_total_ua($_POST["id_usuario"]);  
+            if(is_array($datos)==true and count($datos)>0){
+                foreach($datos as $row)
+                {
+                    $output["TOTAL"] = $row["TOTAL"];
+                }
+                echo json_encode($output);
+            }
+        break;
+        //Total unidades x depto
+        case "un_dep_a";
+            $datos=$unidad_a->get_un_dep_a($_POST["id_usuario"]);  
+            echo json_encode($datos);
+        break;
+        //Total unidades x fuente de financiamiento
+        case "un_fue_a";
+            $datos=$unidad_a->get_un_fue_a($_POST["id_usuario"]);  
+            echo json_encode($datos);
+        break;
+        //Total unidades x municipio
+        case "un_mun_a";
+            $datos=$unidad_a->get_un_mun_a($_POST["id_usuario"]);  
+            echo json_encode($datos);
+        break;
+        //Porcentaje de avance x e y x dpto
+        case "av_un_dep_a";
+            $datos=$unidad_a->get_av_un_dep_a($_POST["id_usuario"]);  
+            echo json_encode($datos);
+        break;
+        //Total estado 1 x
+        case "estado1";
+            $datos=$unidad_a->get_estado1($_POST["id_usuario"]);  
+            echo json_encode($datos);
+        break;
+        //Total estado 2 x
+        case "estado2";
+            $datos=$unidad_a->get_estado2($_POST["id_usuario"]);  
+            echo json_encode($datos);
+        break;
+        //Total estado 3 x
+        case "estado3";
+            $datos=$unidad_a->get_estado3($_POST["id_usuario"]);  
+            echo json_encode($datos);
+        break;
+        //Total estado 4 x
+        case "estado4";
+            $datos=$unidad_a->get_estado4($_POST["id_usuario"]);  
+            echo json_encode($datos);
+        break;
+
+        //Total estado 1 y
+        case "estado1_2";
+            $datos=$unidad_a->get_estado1_2($_POST["id_usuario"]);  
+            echo json_encode($datos);
+        break;
+        //Total estado 2 y
+        case "estado2_2";
+            $datos=$unidad_a->get_estado2_2($_POST["id_usuario"]);  
+            echo json_encode($datos);
+        break;
+        //Total estado 3 y
+        case "estado3_2";
+            $datos=$unidad_a->get_estado3_2($_POST["id_usuario"]);  
+            echo json_encode($datos);
+        break;
+        //Total estado 4 y
+        case "estado4_2";
+            $datos=$unidad_a->get_estado4_2($_POST["id_usuario"]);  
+            echo json_encode($datos);
         break;
     }
 ?> 

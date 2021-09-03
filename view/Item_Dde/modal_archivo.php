@@ -49,11 +49,9 @@
                         <div class="form-group">
                             <label class="form-label" for="tipo_ar">Tipo de Archivo</label>
                             <select class="select2" id="tipo_ar" name="tipo_ar">
-                                <option value="A">A</option>
-                                <option value="B">B</option>
-                                <option value="C">C</option>
-                                <option value="D">D</option>
-                                <option value="E">E</option>
+                                <option value="Actas">Actas</option>
+                                <option value="Instructivos">Instructivos</option>
+                                <option value="Otros">Otros</option>
                             </select>
                         </div>
                     </div>

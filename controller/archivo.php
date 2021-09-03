@@ -30,11 +30,14 @@
                 
 
                 $sub_array[] = 
-                '<a download="'.$row["ruta_ar"].'" href="../'.$row["ruta_ar"].'">
-                    <button type="button" onClick=""  id="'.$row["ruta_ar"].'" class="btn btn-inline btn-primary btn-sm ladda-button">
+                '<a  href="../../config/descarga.php?id_archivo='.$row["id_archivo"].'">
+                    <button type="button" onClick=""  id="'.$row["id_archivo"].'" class="btn btn-inline btn-primary btn-sm ladda-button">
                         <i class="fa fa-download"></i>
                     </button>
-                </a>';
+                </a>
+                
+                <button type="button" onClick="eliminar('.$row["id_archivo"].');"  id="'.$row["id_archivo"].'" 
+                class="btn btn-inline btn-danger btn-sm ladda-button"><i class="fa fa-trash"></i></button>';
 
                 /* '
                     <button type="button" href="descarga.php?id='.$row["id_archivo"].'"  id="'.$row["ruta_ar"].'" class="btn btn-inline btn-primary btn-sm ladda-button">
@@ -53,6 +56,10 @@
                 "iTotalDisplayRecords"=>count($data),
                 "aaData"=>$data);
             echo json_encode($results);
+        break;
+
+        case "eliminar":
+            $archivo->delete_archivo($_POST["id_archivo"]);
         break;
 
     }

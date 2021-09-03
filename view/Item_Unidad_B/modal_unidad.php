@@ -9,7 +9,7 @@
             </div>
             <form method="post" id="unidad_form"> 
 
-                <input type="hidden" id="id_usuario" name="id_usuario" value="<?php echo $_SESSION["id_usuario"] ?>">
+            <input type="hidden" id="id_usuario" name="id_usuario" value="<?php echo $_SESSION["id_usuario"] ?>">
                 <input type="hidden" id="id_unidad_a" name="id_unidad_a">
 
                 <!-- INF GENERAL -->
@@ -31,7 +31,7 @@
 
                         <div class="col-lg-6">
                             <fieldset class="form-group"> 
-                                <label class="form-label semibold" for="id_comunidad">Comunidad</label>
+                                <label class="form-label semibold" for="id_comunidad">Zona Territorial</label>
                                 <select id="id_comunidad" name="id_comunidad" class="form-control">
                                     
                                 </select>
@@ -221,38 +221,38 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">Estado</th>
-                                    <th class="text-center">Aprobado/Reprobado</th>
+                                    <th class="text-center">¿Cumplió?</th>
                                 </tr>
 
                                 <tr>
                                     <td>1. Socialización del protocolo (UE priorizadas) y DNA.</th>
                                     <td>
-                                        <input type="radio" id="e1t" name="e1" value="2" /> Aprobado <br>
-                                        <input type="radio" id="e1f" name="e1" value="1" /> Reprobado
+                                        <input type="radio" id="e1t" name="e1" value="2" /> Si <br>
+                                        <input type="radio" id="e1f" name="e1" value="1" /> No
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td>2. Elaboración - aprobación del mecanismo de referencia y contra referencia de casos (DDE, IPELC, UE priorizadas y DNA).</th>
+                                    <td>2. Elaboración - aprobación del mecanismo de referencia y contra referencia de casos (DDE, UE priorizadas y DNA).</th>
                                     <td>
-                                        <input type="radio" id="e2t" name="e2" value="2" /> Aprobado<br>
-                                        <input type="radio" id="e2f" name="e2" value="1" /> Reprobado
+                                        <input type="radio" id="e2t" name="e2" value="2" /> Si<br>
+                                        <input type="radio" id="e2f" name="e2" value="1" /> No
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td>3. Gestión para recojo de información referida al reporte de casos y funcionamiento del mecanismo (directores UE, Comisiones de Convivencia en coordinación con DNA).</th>
                                     <td>
-                                        <input type="radio" id="e3t" name="e3" value="2" /> Aprobado<br>
-                                        <input type="radio" id="e3f" name="e3" value="1" /> Reprobado
+                                        <input type="radio" id="e3t" name="e3" value="2" /> Si<br>
+                                        <input type="radio" id="e3f" name="e3" value="1" /> No
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td>4. Socialización de la experiencia.</th>
                                     <td>
-                                        <input type="radio" id="e4t" name="e4" value="2" /> Aprobado<br>
-                                        <input type="radio" id="e4f" name="e4" value="1" /> Reprobado
+                                        <input type="radio" id="e4t" name="e4" value="2" /> Si<br>
+                                        <input type="radio" id="e4f" name="e4" value="1" /> No
                                     </td>
                                 </tr>
                             </thead>

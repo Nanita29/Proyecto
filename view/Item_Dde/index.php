@@ -34,20 +34,29 @@
 			</header>
 
 			<div class="box-typical box-typical-padding">
-
-			<button type="button" id="btnnuevo" class="btn btn-inline btn-primary">Nuevo Registro</button>
+				<?php
+					if ($_SESSION["rol_id"]==1 OR $_SESSION["rol_id"]==2){ 
+				?>
+					<button type="button" id="btnnuevo" class="btn btn-inline btn-primary">Nuevo Registro</button>
+				<?php
+					}
+				?>
 
 				<table id="dde_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
 					<thead>
 						<tr>
-							<th class="text-center">Cod</th>
-							<th class="text-center">Nombre</th>
-							<th class="text-center">Director</th>
-                            <th class="text-center">Director Telf.</th>
-                            <th class="text-center">Datos</th>
-                            <th class="text-center">Avance (%)</th> 
-							<th class="text-center">Creador</th>
 							<th class="text-center"style="width: 12%">Acción</th>
+							<th class="text-center">Departamento</th>
+							<th class="text-center">Municipio</th>
+							<th class="text-center">Distrital</th> 
+							<th class="text-center">Director/Telf</th>
+                            <th class="text-center">Avance (%)</th> 
+							<th class="text-center">ESTADOS DE MONITOREO: 1. CONOCEN NORMATIVA Y POLÍTICAS EDUCATIVAS VIGENTES EN TORNO A PCPA, PROTOCOLOS: </th>
+							<th class="text-center">ESTADOS DE MONITOREO: 2. CONOCEN DATOS ESTADO DE SITUACIÓN LÍNEA DE BASE: </th>
+							<th class="text-center">ESTADOS DE MONITOREO: 3. CONOCEN LA ESTRATAGIA DE PREVENCIÓN DE LA VIOLENCIA EN CONTEXTOS EDUCATIVOS: </th>
+							<th class="text-center">ESTADOS DE MONITOREO: 4. CONOCEN LA PROPUESTA DE BUENAS PRÁCTICAS DE LAS MODALIDADES DE PREVENCIÓN DE LA VIOLENCIA EN EL AULA (INICIAL, PRIMARIA Y SECUNDARIA): </th>
+							
+							
 						</tr>
 					</thead>
 					<tbody>

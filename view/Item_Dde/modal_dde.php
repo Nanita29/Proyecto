@@ -33,7 +33,7 @@
 
                         <div class="col-lg-6">
                             <fieldset class="form-group"> 
-                                <label class="form-label semibold" for="id_municipio">Municipio</label>
+                                <label class="form-label semibold" for="id_municipio">Zona Territorial</label>
                                 <select id="id_municipio" name="id_municipio" class="form-control" >
                 
                                 </select>
@@ -72,38 +72,38 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">Estado</th>
-                                    <th class="text-center">Aprobado/Reprobado</th>
+                                    <th class="text-center">¿Cumplió?</th>
                                 </tr>
 
                                 <tr>
                                     <td>1. Conocen normativa y políticas educativas vigentes en torno a PCPA, protocolos.</th>
                                     <td>
-                                        <input type="radio" id="e1t" name="e1" value="2" /> Aprobado <br>
-                                        <input type="radio" id="e1f" name="e1" value="1" /> Reprobado
+                                        <input type="radio" id="e1t" name="e1" value="2" /> Si <br>
+                                        <input type="radio" id="e1f" name="e1" value="1" /> No
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td>2. Conocen datos estado de situación línea de base.</th>
                                     <td>
-                                        <input type="radio" id="e2t" name="e2" value="2" /> Aprobado<br>
-                                        <input type="radio" id="e2f" name="e2" value="1" /> Reprobado
+                                        <input type="radio" id="e2t" name="e2" value="2" /> Si<br>
+                                        <input type="radio" id="e2f" name="e2" value="1" /> No
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td>3. Conocen la estratagia de prevención de la violencia en contextos educativos.</th>
                                     <td>
-                                        <input type="radio" id="e3t" name="e3" value="2" /> Aprobado<br>
-                                        <input type="radio" id="e3f" name="e3" value="1" /> Reprobado
+                                        <input type="radio" id="e3t" name="e3" value="2" /> Si<br>
+                                        <input type="radio" id="e3f" name="e3" value="1" /> No
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td>4. Conocen la propuesta de de armonización de la prevención de la violencia en la currícula educativa (inicial, primaria y secundaria).</th>
+                                    <td>4. Conocen la propuesta de buenas prácticas de las modalidades de prevención de la violencia en el aula (inicial, primaria y secundaria). </th>
                                     <td>
-                                        <input type="radio" id="e4t" name="e4" value="2" /> Aprobado<br>
-                                        <input type="radio" id="e4f" name="e4" value="1" /> Reprobado
+                                        <input type="radio" id="e4t" name="e4" value="2" /> Si<br>
+                                        <input type="radio" id="e4f" name="e4" value="1" /> No
                                     </td>
                                 </tr>
                             </thead>
