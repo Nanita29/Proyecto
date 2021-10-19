@@ -31,7 +31,7 @@
 	<!-- Contenido -->
 	<div class="page-content">
 		<div class="container-fluid">
-		<h3 class="m-t-lg with-border">Direcciones Distritales R2.IVO7, R4.IVO3</h3>
+		<h3 class="m-t-lg with-border">Direcciones Distritales R1.IVO5</h3>
 			<div class="circle-tile ">
 				<div class="circle-tile-heading orange"><i class="fa fa-school fa-fw fa-2x"></i></div>
 				<div class="circle-tile-content orange">
@@ -70,49 +70,16 @@
 								</div>
 							</section>
 	                    </div>
-						
-					</div>
-			</div>
-		</div>
-		
-		<div class="container-fluid">
-			<h5 class="m-t-lg with-border">Estados de Monitoreo</h5>
-			<div class="col-xl-12">
-				<div class="row">
+
 						<div class="col-sm-6">
 							<section class="card">
 								<div class="card-block">
 									<canvas id="estado1"></canvas>
 								</div>
 							</section>
-						</div>
-
-						<div class="col-sm-6">
-							<section class="card">
-								<div class="card-block">
-									<canvas id="estado2"></canvas>
-								</div>
-							</section>
-						</div>
-				</div>
-
-				<div class="row">
-					<div class="col-sm-6">
-						<section class="card">
-							<div class="card-block">
-								<canvas id="estado3"></canvas>
-							</div>
-						</section>
+	                    </div>
+						
 					</div>
-
-					<div class="col-sm-6">
-						<section class="card">
-							<div class="card-block">
-								<canvas id="estado4"></canvas>
-							</div>
-						</section>
-					</div>
-				</div>
 			</div>
 		</div>
 

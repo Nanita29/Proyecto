@@ -245,7 +245,7 @@ function archivo_data(id_unidad_a,id_estado){
 function guardaryeditar(e){
     e.preventDefault();
 	var formData = new FormData($("#unidad_form")[0]);
-    $.ajax({
+   /*  $.ajax({
         url: "../../controller/unidad_a.php?op=guardaryeditar",
         type: "POST",
         data: formData,
@@ -258,13 +258,63 @@ function guardaryeditar(e){
             $('#unidad_data').DataTable().ajax.reload();
 
             swal({
-                title: "Alerta",
-                text: "Completado",
+                title: "Completado",
+                text: "Datos modificados",
                 type: "success",
                 confirmButtonClass: "btn-success"
             });
         }
-    }); 
+    });  */
+    if ($('#a_cod').val()=='' || $('#a_nombre').val()==''){
+        swal({
+            title: "¡Advertencia!",
+            text: "Campos Vacios",
+            type: "warning",
+            confirmButtonClass: "btn-warning"
+        });
+    }else{
+        swal({
+            title: "¿Está seguro?",
+            text: "Se registrarán los datos ingresados",
+            type: "info",
+            showCancelButton: true,
+            confirmButtonText: "Continuar",
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true,
+            closeOnConfirm: false
+          },
+          function(){
+            $.ajax({
+                url: "../../controller/unidad_a.php?op=guardaryeditar",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(datos){    
+                    console.log(datos);
+                    swal({
+                        title: "Completado",
+                        text: "Datos registrados",
+                        type: "success",
+                        confirmButtonClass: "btn-success"
+                    });
+                        $('#archivo_form')[0].reset();
+                        $("#modal_unidad").modal('hide');
+                        $('#unidad_data').DataTable().ajax.reload();
+                     
+                },
+                error: function(datos){
+                    swal({
+                        title: "¡Error!",
+                        text: "No registrado Correctamente",
+                        type: "error",
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Aceptar"
+                    })
+                }
+            }); 
+          });
+    }  
 }
 
 function guardar_archivo(e){
@@ -297,7 +347,12 @@ function guardar_archivo(e){
                 processData: false,
                 success: function(datos){    
                     console.log(datos);
-                        swal("¡Correcto!", "Registrado Correctamente", "success");
+                    swal({
+                        title: "Completado",
+                        text: "Datos registrados",
+                        type: "success",
+                        confirmButtonClass: "btn-success"
+                    });
                         $('#archivo_form')[0].reset();
                         $("#modal_archivo").modal('hide');
                         $('#unidad_data').DataTable().ajax.reload();
@@ -337,7 +392,7 @@ function eliminar(id_unidad_a){
             $('#unidad_data').DataTable().ajax.reload();	
 
             swal({
-                title: "Alerta",
+                title: "Completado",
                 text: "Datos eliminados",
                 type: "success",
                 confirmButtonClass: "btn-success"
@@ -366,7 +421,7 @@ function eliminar_archivo(id_archivo){
             $('#archivo_data').DataTable().ajax.reload();	
 
             swal({
-                title: "Alerta",
+                title: "Completado",
                 text: "Datos eliminados",
                 type: "success",
                 confirmButtonClass: "btn-success"

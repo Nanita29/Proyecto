@@ -156,7 +156,7 @@ require_once("../config/conexion.php");
         public function get_total_dde($id_usuario){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT COUNT(*) as TOTAL FROM dde where id_estado = 1";
+            $sql="SELECT COUNT(*) as TOTAL FROM dde where id_estado = 1 and d_estado=0";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);
             $sql->execute();
@@ -170,7 +170,7 @@ require_once("../config/conexion.php");
             $sql="SELECT CONCAT(c.nombre_dep) as nom,COUNT(*) AS total
             FROM   dde a, municipio b, departamento c 
             where a.id_municipio = b.id_municipio
-            and b.id_departamento = c.id_departamento
+            and b.id_departamento = c.id_departamento and d_estado=0
             GROUP BY 
             c.nombre_dep
             ORDER BY nom DESC";
@@ -187,7 +187,7 @@ require_once("../config/conexion.php");
             $sql="SELECT CONCAT(c.nombre_dep) as nom,AVG(a.d_avance) AS total
             FROM   dde a, municipio b, departamento c 
             where a.id_municipio = b.id_municipio
-            and b.id_departamento = c.id_departamento
+            and b.id_departamento = c.id_departamento and d_estado=0
             GROUP BY c.nombre_dep ORDER BY nom DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);
@@ -203,7 +203,7 @@ require_once("../config/conexion.php");
             FROM   dde a, comunidad b, municipio c, departamento d , fuente e
             where b.id_municipio = c.id_municipio
             and c.id_departamento = d.id_departamento
-            and a.id_estado = '1'
+            and a.id_estado = '1' and d_estado=0
             GROUP BY c.nombre_mun
             ORDER BY nom DESC";
             $sql=$conectar->prepare($sql);
@@ -216,10 +216,15 @@ require_once("../config/conexion.php");
         public function get_estado1($id_usuario){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql=" SELECT CONCAT(if(a.e1 = '1' OR a.e1 = '0', 'NO', 'SI'))  AS nom, COUNT(*) AS total
+            /* $sql=" SELECT CONCAT(if(a.e1 = '1' OR a.e1 = '0', 'NO', 'SI'))  AS nom, COUNT(*) AS total
             FROM   dde a
-            where a.id_estado = '1'
-			GROUP BY if(a.e1 = '1' OR a.e1 = '0', 'NO', 'SI') ORDER BY nom DESC";
+            where a.id_estado = '1' and d_estado=0
+			GROUP BY if(a.e1 = '1' OR a.e1 = '0', 'NO', 'SI') ORDER BY nom DESC"; */
+            $sql="SELECT column_name  AS nom ,SUM(if(a.e1 = '1' OR a.e1 = '0', 1, if(a.e2 = '1' OR a.e2 = '0', 1, if(a.e3 = '1' OR a.e3 = '0', 1, if(a.e4 = '1' OR a.e4 = '0', 1, ''))))) AS NO, SUM(if(a.e1 = '2', 1, 0)) AS SI
+            FROM  information_schema.columns, dde a
+            where a.id_estado = '1' and d_estado=0
+            and table_name='dde' and column_name= 'e1' OR column_name= 'e2' OR column_name= 'e3' OR column_name= 'e4'
+			GROUP BY column_name ORDER BY nom ASC ;";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);
             $sql->execute();
@@ -232,7 +237,7 @@ require_once("../config/conexion.php");
             parent::set_names();
             $sql=" SELECT CONCAT(if(a.e2 = '1' OR a.e2 = '0', 'NO', 'SI'))  AS nom, COUNT(*) AS total
             FROM   dde a
-            where a.id_estado = '1'
+            where a.id_estado = '1' and d_estado=0
 			GROUP BY if(a.e2 = '1' OR a.e2 = '0', 'NO', 'SI') ORDER BY nom DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);
@@ -246,7 +251,7 @@ require_once("../config/conexion.php");
             parent::set_names();
             $sql=" SELECT CONCAT(if(a.e3 = '1' OR a.e3 = '0', 'NO', 'SI'))  AS nom, COUNT(*) AS total
             FROM   dde a
-            where a.id_estado = '1'
+            where a.id_estado = '1' and d_estado=0
 			GROUP BY if(a.e3 = '1' OR a.e3 = '0', 'NO', 'SI') ORDER BY nom DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);
@@ -260,7 +265,7 @@ require_once("../config/conexion.php");
             parent::set_names();
             $sql=" SELECT CONCAT(if(a.e4 = '1' OR a.e4 = '0', 'NO', 'SI'))  AS nom, COUNT(*) AS total
             FROM   dde a
-            where a.id_estado = '1'
+            where a.id_estado = '1' and d_estado=0
 			GROUP BY if(a.e4 = '1' OR a.e4 = '0', 'NO', 'SI') ORDER BY nom DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);

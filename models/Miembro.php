@@ -153,7 +153,7 @@ require_once("../config/conexion.php");
         public function get_total_m($id_usuario){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT COUNT(*) as TOTAL FROM miembro where id_estado = 4";
+            $sql="SELECT COUNT(*) as TOTAL FROM miembro where id_estado = 4 and m_estado=0";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);
             $sql->execute();
@@ -167,7 +167,7 @@ require_once("../config/conexion.php");
             $sql="SELECT CONCAT(c.nombre_dep) as nom,COUNT(*) AS total
             FROM   miembro a, municipio b, departamento c 
             where a.id_municipio = b.id_municipio
-            and b.id_departamento = c.id_departamento
+            and b.id_departamento = c.id_departamento and m_estado=0
             GROUP BY 
             c.nombre_dep
             ORDER BY nom DESC";
@@ -184,7 +184,7 @@ require_once("../config/conexion.php");
             $sql="SELECT CONCAT(c.nombre_dep) as nom,AVG(a.d_avance) AS total
             FROM   miembro a, municipio b, departamento c 
             where a.id_municipio = b.id_municipio
-            and b.id_departamento = c.id_departamento
+            and b.id_departamento = c.id_departamento and m_estado=0
             GROUP BY c.nombre_dep ORDER BY nom DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);
@@ -198,7 +198,7 @@ require_once("../config/conexion.php");
             parent::set_names();
             $sql=" SELECT CONCAT(if(a.e1 = '1' OR a.e1 = '0', 'NO', 'SI'))  AS nom, COUNT(*) AS total
             FROM   miembro a
-            where a.id_estado = '4'
+            where a.id_estado = '4' and m_estado=0
 			GROUP BY if(a.e1 = '1' OR a.e1 = '0', 'NO', 'SI') ORDER BY nom DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);
@@ -212,7 +212,7 @@ require_once("../config/conexion.php");
             parent::set_names();
             $sql=" SELECT CONCAT(if(a.e2 = '1' OR a.e2 = '0', 'NO', 'SI'))  AS nom, COUNT(*) AS total
             FROM   miembro a
-            where a.id_estado = '4'
+            where a.id_estado = '4' and m_estado=0
 			GROUP BY if(a.e2 = '1' OR a.e2 = '0', 'NO', 'SI') ORDER BY nom DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);
@@ -226,7 +226,7 @@ require_once("../config/conexion.php");
             parent::set_names();
             $sql=" SELECT CONCAT(if(a.e3 = '1' OR a.e3 = '0', 'NO', 'SI'))  AS nom, COUNT(*) AS total
             FROM   miembro a
-            where a.id_estado = '4'
+            where a.id_estado = '4' and m_estado=0
 			GROUP BY if(a.e3 = '1' OR a.e3 = '0', 'NO', 'SI') ORDER BY nom DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);
@@ -240,7 +240,7 @@ require_once("../config/conexion.php");
             parent::set_names();
             $sql=" SELECT CONCAT(if(a.e4 = '1' OR a.e4 = '0', 'NO', 'SI'))  AS nom, COUNT(*) AS total
             FROM   miembro a
-            where a.id_estado = '4'
+            where a.id_estado = '4' and m_estado=0
 			GROUP BY if(a.e4 = '1' OR a.e4 = '0', 'NO', 'SI') ORDER BY nom DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);
@@ -254,7 +254,7 @@ require_once("../config/conexion.php");
             parent::set_names();
             $sql=" SELECT CONCAT(if(a.e5 = '1' OR a.e5 = '0', 'NO', 'SI'))  AS nom, COUNT(*) AS total
             FROM   miembro a
-            where a.id_estado = '4'
+            where a.id_estado = '4' and m_estado=0
 			GROUP BY if(a.e5 = '1' OR a.e5 = '0', 'NO', 'SI') ORDER BY nom DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);
@@ -268,7 +268,7 @@ require_once("../config/conexion.php");
             parent::set_names();
             $sql=" SELECT CONCAT(if(a.e6 = '1' OR a.e6 = '0', 'NO', 'SI'))  AS nom, COUNT(*) AS total
             FROM   miembro a
-            where a.id_estado = '4'
+            where a.id_estado = '4' and m_estado=0
 			GROUP BY if(a.e6 = '1' OR a.e6 = '0', 'NO', 'SI') ORDER BY nom DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);

@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
     <?php require_once("../MainHead/head.php");?>
-	<title>Educo : Consultar Dirección Distrital " (R2.IVO7, R4.IVO3)"</title>
+	<title>Educo : Consultar Dirección Distrital " (R1.IVO5)"</title>
 </head>
 <body class="with-side-menu">
 
@@ -23,10 +23,10 @@
 				<div class="tbl">
 					<div class="tbl-row">
 						<div class="tbl-cell">
-							<h3>Consultar Dirección Distrital " (R2.IVO7, R4.IVO3)"</h3>
+							<h3>Consultar Dirección Distrital "(R1.IVO5)"</h3>
 							<ol class="breadcrumb breadcrumb-simple">
 							<li><a href="../Home/index.php">Inicio</a></li>
-								<li class="active">Consultar Dirección Distrital " (R2.IVO7, R4.IVO3)"</li>
+								<li class="active">Consultar Dirección Distrital "(R1.IVO5)"</li>
 							</ol>
 						</div>
 					</div>

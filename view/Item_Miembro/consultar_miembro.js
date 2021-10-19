@@ -214,26 +214,56 @@ function archivo_data(id_miembro, id_estado){
 function guardaryeditar(e){
     e.preventDefault();
 	var formData = new FormData($("#miembro_form")[0]);
-    $.ajax({
-        url: "../../controller/miembro.php?op=guardaryeditar",
-        type: "POST",
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function(datos){    
-            console.log(datos);
-            $('#miembro_form')[0].reset();
-            $("#modal_miembro").modal('hide');
-            $('#miembro_data').DataTable().ajax.reload();
-
-            swal({
-                title: "Alerta",
-                text: "Completado",
-                type: "success",
-                confirmButtonClass: "btn-success"
-            });
-        }
-    }); 
+    if ($('#m_cod').val()=='' || $('#m_nombre').val()=='' ){
+        swal({
+            title: "¡Advertencia!",
+            text: "Campos Vacios",
+            type: "warning",
+            confirmButtonClass: "btn-warning"
+        });
+    }else{
+        swal({
+            title: "¿Está seguro?",
+            text: "Se registrarán los datos ingresados",
+            type: "info",
+            showCancelButton: true,
+            confirmButtonText: "Continuar",
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true,
+            closeOnConfirm: false
+          },
+          function(){
+            $.ajax({
+                url: "../../controller/miembro.php?op=guardaryeditar",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(datos){    
+                    console.log(datos);
+                    swal({
+                        title: "Completado",
+                        text: "Datos registrados",
+                        type: "success",
+                        confirmButtonClass: "btn-success"
+                    });
+                        $('#archivo_form')[0].reset();
+                        $("#modal_miembro").modal('hide');
+                        $('#miembro_data').DataTable().ajax.reload();
+                     
+                },
+                    error: function(datos){
+                        swal({
+                            title: "¡Error!",
+                            text: "No registrado Correctamente",
+                            type: "error",
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonText: "Aceptar"
+                        })
+                    }
+            }); 
+          });
+    }  
 }
 
 function guardar_archivo(e){
@@ -306,7 +336,7 @@ function eliminar(id_miembro){
             $('#miembro_data').DataTable().ajax.reload();	
 
             swal({
-                title: "Alerta",
+                title: "Completado",
                 text: "Datos eliminados",
                 type: "success",
                 confirmButtonClass: "btn-success"
@@ -335,7 +365,7 @@ function eliminar_archivo(id_archivo){
             $('#archivo_data').DataTable().ajax.reload();	
 
             swal({
-                title: "Alerta",
+                title: "Completado",
                 text: "Datos eliminados",
                 type: "success",
                 confirmButtonClass: "btn-success"

@@ -61,10 +61,21 @@
 	                    </div>
 						
 					</div>
+
+					<div class="row">
+						<div class="col-sm-6">
+							<section class="card">
+								<div class="card-block">
+									<canvas id="estado1"></canvas>
+								</div>
+							</section>
+	                    </div>
+						
+					</div>
 			</div>
 		</div>
 		
-		<div class="container-fluid">
+		<!-- <div class="container-fluid">
 			<h5 class="m-t-lg with-border">Estados de Monitoreo</h5>
 			<div class="col-xl-12">
 				<div class="row">
@@ -121,7 +132,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 				
 

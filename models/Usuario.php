@@ -12,10 +12,11 @@
                     header("Location:".conectar::ruta()."index.php?m=2");
 					exit();
                 }else{
-                    $sql = "SELECT * FROM usuario WHERE usu_correo=? and usu_pass=?";
+                    $sql = "SELECT * FROM usuario WHERE usu_correo=? and usu_pass=MD5(?)";
                     $stmt=$conectar->prepare($sql);
                     $stmt->bindValue(1, $correo);
                     $stmt->bindValue(2, $pass);
+                    print_r($pass);
                     //$stmt->bindValue(3, $rol);
                     $stmt->execute();
                     $resultado = $stmt->fetch();
@@ -38,7 +39,7 @@
             $conectar= parent::conexion();
             parent::set_names();
             $sql="INSERT INTO usuario (id_usuario, nombre_usu, apellido_usu, usu_correo, usu_pass, rol_id, fecha_crea, fecha_mod, fecha_elim,
-             estado) VALUES (NULL,?,?,?,?,?,now(), NULL, NULL, '0');";
+             estado) VALUES (NULL,?,?,?,MD5(?),?,now(), NULL, NULL, '0');";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $nombre_usu);
             $sql->bindValue(2, $apellido_usu);
@@ -56,7 +57,7 @@
                 nombre_usu = ?,
                 apellido_usu = ?,
                 usu_correo = ?,
-                usu_pass = ?,
+                usu_pass = MD5(?),
                 rol_id = ?
                 WHERE
                 id_usuario = ?";

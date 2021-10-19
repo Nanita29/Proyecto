@@ -201,11 +201,13 @@ $(document).ready(function(){
       data = JSON.parse(data);
       console.log(data);
       var nom = [];
-      var total = [];
+      var SI = [];
+      var NO = [];
 
       for (var i in data) {
           nom.push(data[i].nom);
-          total.push(data[i].total);
+          SI.push(data[i].SI);
+          NO.push(data[i].NO);
       }
       new Chart(document.getElementById("estado1"), {
           type: 'bar',
@@ -213,19 +215,28 @@ $(document).ready(function(){
             labels: nom,
             datasets: [
               {
-                label: "Total",
+                label: "SI",
                   backgroundColor: 'rgba(41, 128, 185 , 0.3)', // Color de fondo
                   borderColor: '#2980B9', // Color del borde
                   borderWidth: 2,
-                data: total
+                data: SI
+              },
+              {
+                label: "NO",
+                  backgroundColor: 'rgba(41, 128, 185 , 0.1)', // Color de fondo
+                  borderColor: '#2980B9', // Color del borde
+                  borderWidth: 2,
+                data: NO
               }
             ]
           },
           options: {
-            legend: { display: false },
+            legend: {
+              position: 'top',
+            },
             title: {
               display: true,
-              text: '1. Conocen la normativa RM 2021/04 Planes de Convivencia Pacífica y Armónica'
+              text: 'Avance de los Estados de Monitoreo (X)'
             },
             responsive: true,
             scales: {
@@ -377,11 +388,13 @@ $(document).ready(function(){
       data = JSON.parse(data);
       console.log(data);
       var nom = [];
-      var total = [];
+      var SI = [];
+      var NO = [];
 
       for (var i in data) {
           nom.push(data[i].nom);
-          total.push(data[i].total);
+          SI.push(data[i].SI);
+          NO.push(data[i].NO);
       }
       new Chart(document.getElementById("estado1_2"), {
           type: 'bar',
@@ -389,19 +402,28 @@ $(document).ready(function(){
             labels: nom,
             datasets: [
               {
-                label: "Total",
+                label: "SI",
                   backgroundColor: 'rgba(41, 128, 185 , 0.3)', // Color de fondo
                   borderColor: '#2980B9', // Color del borde
                   borderWidth: 2,
-                data: total
+                data: SI
+              },
+              {
+                label: "NO",
+                  backgroundColor: 'rgba(41, 128, 185 , 0.1)', // Color de fondo
+                  borderColor: '#2980B9', // Color del borde
+                  borderWidth: 2,
+                data: NO
               }
             ]
           },
           options: {
-            legend: { display: false },
+            legend: {
+              position: 'top',
+            },
             title: {
               display: true,
-              text: '1. Socialización del protocolo (UE priorizadas) y DNA'
+              text: 'Avance de los Estados de Monitoreo (Y)'
             },
             responsive: true,
             scales: {

@@ -179,7 +179,7 @@
         public function get_total_ua($id_usuario){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT COUNT(*) as TOTAL FROM unidad_educativa_a where id_estado = 2";
+            $sql="SELECT COUNT(*) as TOTAL FROM unidad_educativa_a where id_estado = 2 and a_estado=0";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);
             $sql->execute();
@@ -194,7 +194,7 @@
             where a.id_comunidad = b.id_comunidad
             and b.id_municipio = c.id_municipio
             and c.id_departamento = d.id_departamento
-            and a.id_estado = '2'
+            and a.id_estado = '2' and a_estado=0
             GROUP BY 
             d.nombre_dep
             ORDER BY nom DESC";
@@ -221,7 +221,7 @@
             where a.id_comunidad = b.id_comunidad
             and b.id_municipio = c.id_municipio
             and c.id_departamento = d.id_departamento
-            and a.id_estado = '2'
+            and a.id_estado = '2' and a_estado=0
             and a.id_fuente = e.id_fuente
             GROUP BY e.nombre_fue
             ORDER BY nom DESC";
@@ -239,7 +239,7 @@
             where a.id_comunidad = b.id_comunidad
             and b.id_municipio = c.id_municipio
             and c.id_departamento = d.id_departamento
-            and a.id_estado = '2'
+            and a.id_estado = '2' and a_estado=0
             and a.id_fuente = e.id_fuente
             GROUP BY c.nombre_mun
             ORDER BY nom DESC";
@@ -256,7 +256,7 @@
             FROM   unidad_educativa_a a, comunidad b, municipio c, departamento d 
             where a.id_comunidad = b.id_comunidad
             and b.id_municipio = c.id_municipio
-            and c.id_departamento = d.id_departamento
+            and c.id_departamento = d.id_departamento and a_estado=0
             and a.id_estado = '2' GROUP BY d.nombre_dep ORDER BY nom DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);
@@ -270,7 +270,7 @@
             parent::set_names();
             $sql=" SELECT CONCAT(if(a.e1 = '1' OR a.e1 = '0', 'NO', 'SI'))  AS nom, COUNT(*) AS total
             FROM   unidad_educativa_a a
-            where a.id_estado = '2'
+            where a.id_estado = '2' and a_estado=0
 			GROUP BY if(a.e1 = '1' OR a.e1 = '0', 'NO', 'SI') ORDER BY nom DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);
@@ -284,7 +284,7 @@
             parent::set_names();
             $sql=" SELECT CONCAT(if(a.e2 = '1' OR a.e2 = '0', 'NO', 'SI'))  AS nom, COUNT(*) AS total
             FROM   unidad_educativa_a a
-            where a.id_estado = '2'
+            where a.id_estado = '2' and a_estado=0
 			GROUP BY if(a.e2 = '1' OR a.e2 = '0', 'NO', 'SI') ORDER BY nom DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);
@@ -298,7 +298,7 @@
             parent::set_names();
             $sql=" SELECT CONCAT(if(a.e3 = '1' OR a.e3 = '0', 'NO', 'SI'))  AS nom, COUNT(*) AS total
             FROM   unidad_educativa_a a
-            where a.id_estado = '2'
+            where a.id_estado = '2' and a_estado=0
 			GROUP BY if(a.e3 = '1' OR a.e3 = '0', 'NO', 'SI') ORDER BY nom DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);
@@ -312,7 +312,7 @@
             parent::set_names();
             $sql=" SELECT CONCAT(if(a.e4 = '1' OR a.e4 = '0', 'NO', 'SI'))  AS nom, COUNT(*) AS total
             FROM   unidad_educativa_a a
-            where a.id_estado = '2'
+            where a.id_estado = '2' and a_estado=0
 			GROUP BY if(a.e4 = '1' OR a.e4 = '0', 'NO', 'SI') ORDER BY nom DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);
@@ -326,7 +326,7 @@
             parent::set_names();
             $sql=" SELECT CONCAT(if(a.e1_2 = '1' OR a.e1_2 = '0', 'NO', 'SI'))  AS nom, COUNT(*) AS total
             FROM   unidad_educativa_a a
-            where a.id_estado = '2'
+            where a.id_estado = '2' and a_estado=0
 			GROUP BY if(a.e1_2 = '1' OR a.e1_2 = '0', 'NO', 'SI') ORDER BY nom DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);
@@ -340,7 +340,7 @@
             parent::set_names();
             $sql=" SELECT CONCAT(if(a.e2_2 = '1' OR a.e2_2 = '0', 'NO', 'SI'))  AS nom, COUNT(*) AS total
             FROM   unidad_educativa_a a
-            where a.id_estado = '2'
+            where a.id_estado = '2' and a_estado=0
 			GROUP BY if(a.e2_2 = '1' OR a.e2_2 = '0', 'NO', 'SI') ORDER BY nom DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);
@@ -354,7 +354,7 @@
             parent::set_names();
             $sql=" SELECT CONCAT(if(a.e3_2 = '1' OR a.e3_2 = '0', 'NO', 'SI'))  AS nom, COUNT(*) AS total
             FROM   unidad_educativa_a a
-            where a.id_estado = '2'
+            where a.id_estado = '2' and a_estado=0
 			GROUP BY if(a.e3_2 = '1' OR a.e3_2 = '0', 'NO', 'SI') ORDER BY nom DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);
@@ -368,7 +368,7 @@
             parent::set_names();
             $sql=" SELECT CONCAT(if(a.e4_2 = '1' OR a.e4_2 = '0', 'NO', 'SI'))  AS nom, COUNT(*) AS total
             FROM   unidad_educativa_a a
-            where a.id_estado = '2'
+            where a.id_estado = '2' and a_estado=0
 			GROUP BY if(a.e4_2 = '1' OR a.e4_2 = '0', 'NO', 'SI') ORDER BY nom DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id_usuario);

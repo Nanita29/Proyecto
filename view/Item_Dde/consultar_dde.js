@@ -201,12 +201,12 @@ function archivo_data(id_dde, id_estado){
 function guardaryeditar(e){
     e.preventDefault();
 	var formData = new FormData($("#dde_form")[0]);
-    if ($('#id_municipio').val()=='' ){
+    if ($('#d_cod').val()=='' || $('#d_nombre').val()=='' ){
         swal({
             title: "¡Advertencia!",
             text: "Campos Vacios",
             type: "warning",
-            confirmButtonClass: "btn-danger"
+            confirmButtonClass: "btn-warning"
         });
     }else{
         swal({
@@ -214,29 +214,43 @@ function guardaryeditar(e){
             text: "Se registrarán los datos ingresados",
             type: "info",
             showCancelButton: true,
-            confirmButtonClass: "btn-success",
             confirmButtonText: "Continuar",
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true,
             closeOnConfirm: false
           },
           function(){
-                $.ajax({
-                    url: "../../controller/dde.php?op=guardaryeditar",
-                    type: "POST",
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function(datos){    
-                        console.log(datos);
-                        $('#dde_form')[0].reset();
+            $.ajax({
+                url: "../../controller/dde.php?op=guardaryeditar",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(datos){    
+                    console.log(datos);
+                    swal({
+                        title: "Completado",
+                        text: "Datos registrados",
+                        type: "success",
+                        confirmButtonClass: "btn-success"
+                    });
+                        $('#archivo_form')[0].reset();
                         $("#modal_dde").modal('hide');
                         $('#dde_data').DataTable().ajax.reload();
-
-                        swal("¡Correcto!", "Registrado Correctamente", "success");
+                     
+                },
+                    error: function(datos){
+                        swal({
+                            title: "¡Error!",
+                            text: "No registrado Correctamente",
+                            type: "error",
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonText: "Aceptar"
+                        })
                     }
-                });
+            }); 
           });
-        
-    } 
+    }
 }
 
 function guardar_archivo(e){
@@ -309,7 +323,7 @@ function eliminar(id_dde){
             $('#dde_data').DataTable().ajax.reload();	
 
             swal({
-                title: "Alerta",
+                title: "Completado",
                 text: "Datos eliminados",
                 type: "success",
                 confirmButtonClass: "btn-success"
@@ -338,7 +352,7 @@ function eliminar_archivo(id_archivo){
             $('#archivo_data').DataTable().ajax.reload();	
 
             swal({
-                title: "Alerta",
+                title: "Completado",
                 text: "Datos eliminados",
                 type: "success",
                 confirmButtonClass: "btn-success"

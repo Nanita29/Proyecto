@@ -157,11 +157,13 @@ $(document).ready(function(){
       data = JSON.parse(data);
       console.log(data);
       var nom = [];
-      var total = [];
+      var SI = [];
+      var NO = [];
 
       for (var i in data) {
           nom.push(data[i].nom);
-          total.push(data[i].total);
+          SI.push(data[i].SI);
+          NO.push(data[i].NO);
       }
       new Chart(document.getElementById("estado1"), {
           type: 'bar',
@@ -169,19 +171,28 @@ $(document).ready(function(){
             labels: nom,
             datasets: [
               {
-                label: "Total",
+                label: "SI",
                   backgroundColor: 'rgba(218, 140, 16, 0.3)', // Color de fondo
                   borderColor: '#DA8C10', // Color del borde
                   borderWidth: 2,
-                data: total
+                data: SI
+              },
+              {
+                label: "NO",
+                  backgroundColor: 'rgba(41, 128, 185 , 0.1)', // Color de fondo
+                  borderColor: '#DA8C10', // Color del borde
+                  borderWidth: 2,
+                data: NO
               }
             ]
           },
           options: {
-            legend: { display: false },
+            legend: {
+              position: 'top',
+            },
             title: {
               display: true,
-              text: '1. Conocen normativa y políticas educativas vigentes en torno a PCPA, protocolos'
+              text: 'Avance de los Estados de Monitoreo'
             },
             responsive: true,
             scales: {

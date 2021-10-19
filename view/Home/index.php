@@ -55,7 +55,7 @@
 							<div class="circle-tile ">
 								<div class="circle-tile-heading orange"><i class="fa fa-book fa-fw fa-2x"></i></div>
 								<div class="circle-tile-content orange">
-									<div class="circle-tile-description text-faded">Direcciones Distritales<br>R2.IVO7, R4.IVO3</div>
+									<div class="circle-tile-description text-faded">Direcciones Distritales<br>R1.IVO5</div>
 									<div class="circle-tile-number text-faded " id="tot_dde"></div>
 									<a class="circle-tile-footer" href="..\Dash_Dde\">Más información <i class="fa fa-chevron-circle-right"></i></a>
 								</div>
@@ -127,7 +127,7 @@
 
 			<!-- DDE -->
 			<div class="row">
-				<h3 class="m-t-lg with-border">Direcciones Distritales R2.IVO7, R4.IVO3</h5>
+				<h3 class="m-t-lg with-border">Direcciones Distritales R1.IVO5</h5>
 				<div class="col-xl-12">
 					<div class="row">
 						<div class="col-sm-6">

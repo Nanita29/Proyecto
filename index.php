@@ -77,9 +77,9 @@
                         <input type="password" id="usu_pass" name="usu_pass" class="form-control" placeholder="Contraseña"/>
                     </div>
                     <div class="form-group">
-                        <div class="float-right reset">
+                        <!-- <div class="float-right reset">
                             <a href="reset-password.html">Cambiar Contraseña</a>
-                        </div>
+                        </div> -->
                         <!-- <div class="float-left reset">
                             <a href="#" id="btnsoporte">Acceso Soporte</a>
                         </div> -->
